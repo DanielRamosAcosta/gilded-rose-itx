@@ -1,3 +1,1 @@
-export function myFunction() {
-  return true
-}
+console.log("Hello World!")
