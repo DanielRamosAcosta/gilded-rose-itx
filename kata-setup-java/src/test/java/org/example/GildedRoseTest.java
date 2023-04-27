@@ -11,15 +11,9 @@ class GildedRoseTest {
 
   public static final int MAXIMUM_QUALITY = 50;
 
-  public static final String AGED_BRIE_ITEM = "Aged Brie";
-
-  public static final String SULFURAS_ITEM = "Sulfuras, Hand of Ragnaros";
-
-  public static final String BACKSTAGE_ITEM = "Backstage passes to a TAFKAL80ETC concert";
-
   @Test
   void qualityNeverIsMinorThanZero() {
-    Item[] items = new Item[]{new Item("Generic item", 0, MINIMUM_QUALITY)};
+    Item[] items = new Item[]{new ItemGeneric("Generic item", 0, MINIMUM_QUALITY)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -29,7 +23,7 @@ class GildedRoseTest {
 
   @Test
   void qualityNeverIsMayorThanFifty() {
-    Item[] items = new Item[]{new Item(AGED_BRIE_ITEM, 0, MAXIMUM_QUALITY)};
+    Item[] items = new Item[]{new ItemAgedBrie( 0, MAXIMUM_QUALITY)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -39,7 +33,7 @@ class GildedRoseTest {
 
   @Test
   void brieWithSellInAddOneToQuality() {
-    Item[] items = new Item[]{new Item(AGED_BRIE_ITEM, 1, 0)};
+    Item[] items = new Item[]{new ItemAgedBrie( 1, 0)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -49,7 +43,7 @@ class GildedRoseTest {
 
   @Test
   void brieWithoutSellInAddOneToQuality() {
-    Item[] items = new Item[]{new Item(AGED_BRIE_ITEM, 0, 0)};
+    Item[] items = new Item[]{new ItemAgedBrie( 0, 0)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -61,7 +55,7 @@ class GildedRoseTest {
 
   @Test
   void backstageWithSellInAddOneToQuality() {
-    Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 1, 0)};
+    Item[] items = new Item[]{new ItemBackstage( 1, 0)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -71,7 +65,7 @@ class GildedRoseTest {
 
   @Test
   void backstageWithSellInGreaterThanEleven() {
-    Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 12, 0)};
+    Item[] items = new Item[]{new ItemBackstage( 12, 0)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -81,7 +75,7 @@ class GildedRoseTest {
 
   @Test
   void backstageWithMaximumQuality() {
-    Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 12, MAXIMUM_QUALITY)};
+    Item[] items = new Item[]{new ItemBackstage( 12, MAXIMUM_QUALITY)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -91,7 +85,7 @@ class GildedRoseTest {
 
   @Test
   void backstageWithMaximumQualityAndSellInUnder10() {
-    Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 8, 49)};
+    Item[] items = new Item[]{new ItemBackstage( 8, 49)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -101,7 +95,7 @@ class GildedRoseTest {
 
   @Test
   void backstageWithMaximumQualityAndSellInUnder5() {
-    Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 4, 49)};
+    Item[] items = new Item[]{new ItemBackstage( 4, 49)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -111,7 +105,7 @@ class GildedRoseTest {
 
   @Test
   void backstageWithSellInBetweenFiveAndTenAddOneToQuality() {
-    Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 7, 0)};
+    Item[] items = new Item[]{new ItemBackstage( 7, 0)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -121,7 +115,7 @@ class GildedRoseTest {
 
   @Test
   void backstageWithSellInZeroAddOneToQuality() {
-    Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 0, 1)};
+    Item[] items = new Item[]{new ItemBackstage( 0, 1)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -131,7 +125,7 @@ class GildedRoseTest {
 
   @Test
   void sulfurasMaintainSellInAndQuality() {
-    Item[] items = new Item[]{new Item(SULFURAS_ITEM, 5, 7)};
+    Item[] items = new Item[]{new ItemSulfuras( 5, 7)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -142,7 +136,7 @@ class GildedRoseTest {
 
   @Test
   void sulfurasMaintainSellInAndQualityAtZero() {
-    Item[] items = new Item[]{new Item(SULFURAS_ITEM, -1, 1)};
+    Item[] items = new Item[]{new ItemSulfuras( -1, 1)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
@@ -153,7 +147,7 @@ class GildedRoseTest {
 
   @Test
   void genericItem() {
-    Item[] items = new Item[]{new Item("Generic", 1, 1)};
+    Item[] items = new Item[]{new ItemGeneric("Generic", 1, 1)};
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);
     assertEquals("Generic", app.items[0].name);
@@ -163,7 +157,7 @@ class GildedRoseTest {
 
   @Test
   void genericItemSellInNegative() {
-    Item[] items = new Item[]{new Item("Generic", -1, 2)};
+    Item[] items = new Item[]{new ItemGeneric("Generic", -1, 2)};
 
     GildedRose app = new GildedRose(items);
     GildedRose.updateQuality(app);

@@ -1,6 +1,6 @@
 package org.example;
 
-public class Item {
+public abstract class Item {
 
   public static final String AGED_BRIE = "Aged Brie";
 
@@ -22,6 +22,12 @@ public class Item {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
+  }
+
+  public void increaseQualityWithCheck() {
+    if (hasLowerThanMaxQuality()) {
+      this.quality = increaseQuality();
+    }
   }
 
   public boolean sellInIsLowerThanTen() {
@@ -52,7 +58,7 @@ public class Item {
     return this.quality < MAX_QUALITY;
   }
 
-  public int increaseQuality() {
+  private int increaseQuality() {
     return this.quality + 1;
   }
 
