@@ -20,7 +20,9 @@ export class Item {
   }
 
   public increaseQuality() {
-    this.quality++
+    if (this.hasLessThanMaxQuality()) {
+      this.quality++
+    }
   }
 
   public decreaseQuality() {

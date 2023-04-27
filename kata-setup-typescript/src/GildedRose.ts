@@ -18,30 +18,24 @@ export class GildedRose {
           item.decreaseQuality()
         }
       } else {
-        if (item.hasLessThanMaxQuality()) {
-          item.increaseQuality()
-          if (this.isBackstage(item)) {
-            if (this.isLessThanTenDaysToBackstage(item) && item.hasLessThanMaxQuality()) {
-              item.increaseQuality()
-            }
-            if (this.isLessThanFiveDaysToBackstage(item)) {
-              if (item.hasLessThanMaxQuality()) {
-                item.increaseQuality()
-              }
-            }
+        item.increaseQuality()
+        if (this.isBackstage(item)) {
+          if (this.isLessThanTenDaysToBackstage(item)) {
+            item.increaseQuality()
+          }
+          if (this.isLessThanFiveDaysToBackstage(item)) {
+            item.increaseQuality()
           }
         }
       }
       if (item.isItemOverdated()) {
-        if (!this.isAgedBrie(item)) {
+        if (this.isAgedBrie(item)) {
+          item.increaseQuality()
+        } else {
           if (!this.isBackstage(item) && item.hasQuality()) {
             item.decreaseQuality()
           } else {
             item.resetQualityToZero()
-          }
-        } else {
-          if (item.hasLessThanMaxQuality()) {
-            item.increaseQuality()
           }
         }
       }
