@@ -14,35 +14,35 @@ export class GildedRose {
       if (!this.isAgedBrie(item) && !this.isBackstage(item)) {
         if (this.haveQuality(item)) {
           if (!this.isSulfuras(item)) {
-            item.quality = item.quality - 1
+            item.decreaseQuality()
           }
         }
       } else {
         if (this.haveLessThanMaxQuality(item)) {
-          item.quality = item.quality + 1
+          item.increaseQuality()
           if (this.isBackstage(item)) {
             if (item.sellIn < 11) {
               if (this.haveLessThanMaxQuality(item)) {
-                item.quality = item.quality + 1
+                item.increaseQuality()
               }
             }
             if (item.sellIn < 6) {
               if (this.haveLessThanMaxQuality(item)) {
-                item.quality = item.quality + 1
+                item.increaseQuality()
               }
             }
           }
         }
       }
       if (!this.isSulfuras(item)) {
-        item.sellIn = item.sellIn - 1
+        item.decreaseSellIn()
       }
       if (item.sellIn < 0) {
         if (!this.isAgedBrie(item)) {
           if (!this.isBackstage(item)) {
             if (this.haveQuality(item)) {
               if (!this.isSulfuras(item)) {
-                item.quality = item.quality - 1
+                item.decreaseQuality()
               }
             }
           } else {
@@ -50,7 +50,7 @@ export class GildedRose {
           }
         } else {
           if (this.haveLessThanMaxQuality(item)) {
-            item.quality = item.quality + 1
+            item.increaseQuality()
           }
         }
       }
