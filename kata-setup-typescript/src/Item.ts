@@ -47,7 +47,7 @@ export class Item {
     return this.quality < HIGH_QUALITY_THRESHOLD
   }
   increaseQuality(amount: number): void {
-    this.quality = Math.min(50, this.quality + amount)
+    this.quality = Math.min(HIGH_QUALITY_THRESHOLD, this.quality + amount)
   }
 
   decreaseQuality(amount: number): void {
