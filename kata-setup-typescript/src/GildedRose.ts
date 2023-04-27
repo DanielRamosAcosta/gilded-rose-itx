@@ -17,12 +17,12 @@ export class GildedRose {
   increaseBackstageQuality(product: Item) {
     if (product.isQualityAboveThreshold()) {
       product.increaseQuality()
-        if (product.sellIn <= BACKSTAGE_DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
-          product.increaseQuality()
-        }
-        if (product.sellIn <= BACKSTAGE_TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
-          product.increaseQuality()
-        }
+      if (product.sellIn <= BACKSTAGE_DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
+        product.increaseQuality()
+      }
+      if (product.sellIn <= BACKSTAGE_TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
+        product.increaseQuality()
+      }
     }
   }
 
