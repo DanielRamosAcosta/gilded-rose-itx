@@ -86,11 +86,17 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).toBe(8)
   })
 
-  it("a backstage pass should lose all quality concert date is expired", () => {
-    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 0, 10)])
+  it("various items are proccesed successfully", () => {
+    const gildedRose = new GildedRose([
+      new Item("apple", 0, 5),
+      new Item("orange", 2, 5),
+    ])
 
     const items = gildedRose.updateQuality()
 
-    expect(items[0].quality).toBe(0)
+    expect(items[0].sellIn).toBeLessThan(0)
+    expect(items[0].quality).toBeLessThan(5)
+    expect(items[1].sellIn).toBeLessThan(2)
+    expect(items[1].quality).toBeLessThan(5)
   })
 })
