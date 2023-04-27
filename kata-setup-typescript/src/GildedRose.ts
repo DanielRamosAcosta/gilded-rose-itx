@@ -14,25 +14,35 @@ export class GildedRose {
     this.products = products
   }
 
+  updateQuality2() {
+    this.products.forEach((product) => {
+      if (product.isLegendary()) {
+        return
+      }
+      if (product.isAged()) {
+      }
+    })
+    return this.products
+  }
+
   updateQuality() {
     for (let i = 0; i < this.products.length; i++) {
-      if (!this.products[i].isAged() && !this.products[i].isBackstage()) {
-        if (this.products[i].quality > LOW_QUALITY_THRESHOLD) {
-          if (!this.products[i].isLegendary()) {
-            this.products[i].decreaseQuality()
-          }
+      if (this.products[i].isNormal()) {
+        if (this.products[i].isQualityAboveZero()) {
+          this.products[i].decreaseQuality()
         }
-      } else {
-        if (this.products[i].quality < HIGH_QUALITY_THRESHOLD) {
+      }
+      if (this.products[i].isAged() || this.products[i].isBackstage()) {
+        if (this.products[i].isQualityAboveThreshold()) {
           this.products[i].increaseQuality()
           if (this.products[i].isBackstage()) {
             if (this.products[i].sellIn <= BACKSTAGE_DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
-              if (this.products[i].quality < HIGH_QUALITY_THRESHOLD) {
+              if (this.products[i].isQualityAboveThreshold()) {
                 this.products[i].increaseQuality()
               }
             }
             if (this.products[i].sellIn <= BACKSTAGE_TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
-              if (this.products[i].quality < HIGH_QUALITY_THRESHOLD) {
+              if (this.products[i].isQualityAboveThreshold()) {
                 this.products[i].increaseQuality()
               }
             }
@@ -45,16 +55,16 @@ export class GildedRose {
       if (this.products[i].sellIn < QUALITY_DROP_TO_ZERO_SELL_IN_THRESHOLD) {
         if (!this.products[i].isAged()) {
           if (!this.products[i].isBackstage()) {
-            if (this.products[i].quality > LOW_QUALITY_THRESHOLD) {
+            if (this.products[i].isQualityAboveZero()) {
               if (!this.products[i].isLegendary()) {
                 this.products[i].decreaseQuality()
               }
             }
           } else {
-            this.products[i].quality = this.products[i].quality - this.products[i].quality
+            this.products[i].quality = 0
           }
         } else {
-          if (this.products[i].quality < HIGH_QUALITY_THRESHOLD) {
+          if (this.products[i].isQualityAboveThreshold()) {
             this.products[i].increaseQuality()
           }
         }
