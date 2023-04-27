@@ -8,7 +8,7 @@ export class Backstage extends Item {
   updateQuality(): void {
     // Legendary items don't change
     if (this.sellIn < 0) {
-      this.quality = 0
+      this.resetQuality()
     } else if (this.sellIn <= 5) {
       this.increaseQuality(3)
     } else if (this.sellIn <= 10) {

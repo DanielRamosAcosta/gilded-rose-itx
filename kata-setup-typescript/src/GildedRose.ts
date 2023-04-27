@@ -10,13 +10,12 @@ export class GildedRose {
   constructor(products = [] as Array<Item>) {
     this.products = products
   }
-
+  updateProductQuality(product: Item) {
+    product.updateSellIn()
+    product.updateQuality()
+  }
   updateQuality() {
-    for (let i = 0; i < this.products.length; i++) {
-      this.products[i].updateSellIn()
-      this.products[i].updateQuality()
-    }
-
+    this.products.forEach(this.updateProductQuality)
     return this.products
   }
 }

@@ -54,6 +54,10 @@ export class Item {
     this.quality = Math.max(0, this.quality - amount)
   }
 
+  resetQuality(): void {
+    this.quality = 0
+  }
+
   updateQuality(): void {
     if (this.sellIn < 0) {
       this.decreaseQuality(2)
