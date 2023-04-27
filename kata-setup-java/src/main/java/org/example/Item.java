@@ -13,6 +13,22 @@ public class Item {
     this.quality = quality;
   }
 
+  public boolean sellInIsLowerThanTen() {
+    return this.sellIn <= 10;
+  }
+
+  public boolean sellInIsLowerThanFive() {
+    return this.sellIn <= 5;
+  }
+
+  public int sellInDecrease() {
+    return this.sellIn - 1;
+  }
+
+  public int resetQuality() {
+    return this.quality - this.quality;
+  }
+
   boolean theQualityIsAboveTheMinimum() {
     return this.quality > GildedRose.MIN_QUALITY;
   }
