@@ -22,7 +22,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item("Generic item", 0, MINIMUM_QUALITY)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertTrue(MINIMUM_QUALITY >= app.items[0].quality);
   }
@@ -32,7 +32,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(AGED_BRIE_ITEM, 0, MAXIMUM_QUALITY)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertTrue(MAXIMUM_QUALITY >= app.items[0].quality);
   }
@@ -42,7 +42,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(AGED_BRIE_ITEM, 1, 0)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(1, app.items[0].quality);
   }
@@ -52,7 +52,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(AGED_BRIE_ITEM, 0, 0)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(2, app.items[0].quality);
   }
@@ -64,7 +64,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 1, 0)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(3, app.items[0].quality);
   }
@@ -74,7 +74,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 12, 0)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(1, app.items[0].quality);
   }
@@ -84,7 +84,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 12, MAXIMUM_QUALITY)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(MAXIMUM_QUALITY, app.items[0].quality);
   }
@@ -94,7 +94,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 8, 49)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(MAXIMUM_QUALITY, app.items[0].quality);
   }
@@ -104,7 +104,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 4, 49)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(MAXIMUM_QUALITY, app.items[0].quality);
   }
@@ -114,7 +114,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 7, 0)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(2, app.items[0].quality);
   }
@@ -124,7 +124,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(BACKSTAGE_ITEM, 0, 1)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(0, app.items[0].quality);
   }
@@ -134,7 +134,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(SULFURAS_ITEM, 5, 7)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(5, app.items[0].sellIn);
     assertEquals(7, app.items[0].quality);
@@ -145,7 +145,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item(SULFURAS_ITEM, -1, 1)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     assertEquals(-1, app.items[0].sellIn);
     assertEquals(1, app.items[0].quality);
@@ -155,7 +155,7 @@ class GildedRoseTest {
   void genericItem() {
     Item[] items = new Item[]{new Item("Generic", 1, 1)};
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
     assertEquals("Generic", app.items[0].name);
     assertEquals(0, app.items[0].sellIn);
     assertEquals(0, app.items[0].quality);
@@ -166,7 +166,7 @@ class GildedRoseTest {
     Item[] items = new Item[]{new Item("Generic", -1, 2)};
 
     GildedRose app = new GildedRose(items);
-    app.updateQuality();
+    GildedRose.updateQuality(app);
 
     Item item = app.items[0];;
     assertEquals("Generic, -2, 0",item.toString());
