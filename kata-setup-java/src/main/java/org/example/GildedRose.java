@@ -19,10 +19,7 @@ class GildedRose {
       return;
     }
 
-    if (!item.isAgedBrie()
-        && !item.isBackstage()) {
-      item.decreaseQuality();
-    } else {
+    if (item.isAgedBrie() || item.isBackstage()) {
       item.increaseQuality();
 
       if (item.isBackstage()) {
@@ -34,7 +31,8 @@ class GildedRose {
           item.increaseQuality();
         }
       }
-
+    } else {
+      item.decreaseQuality();
     }
 
     item.sellIn = item.sellIn - 1;
