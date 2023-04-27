@@ -24,7 +24,16 @@ class GildedRose {
     if (item.isAgedBrie() || item.isBackstage()) {
       item.increaseQuality();
 
+      if (item.isAgedBrie() && item.isExpired()) {
+        item.increaseQuality();
+        return;
+      }
       if (item.isBackstage()) {
+        if (item.isExpired()) {
+          item.removeQuality();
+          return;
+        }
+
         if (item.sellIn < 10) {
           item.increaseQuality();
         }
@@ -39,16 +48,6 @@ class GildedRose {
 
 
     if (!item.isExpired()) {
-      return;
-    }
-
-    if (item.isBackstage()) {
-      item.removeQuality();
-      return;
-    }
-
-    if (item.isAgedBrie()) {
-      item.increaseQuality();
       return;
     }
 
