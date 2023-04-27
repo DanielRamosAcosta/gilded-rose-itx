@@ -26,6 +26,12 @@ public class Item {
     this.quality = quality;
   }
 
+  void increaseQuality() {
+    if (canIncreaseQuality()) {
+      quality = quality + 1;
+    }
+  }
+
   boolean isExpired() {
     return this.sellIn < MIN_SELL_IN;
   }
