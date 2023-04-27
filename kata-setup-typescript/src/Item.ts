@@ -1,9 +1,9 @@
-export interface Itemer {
+export interface Itemeble {
   updateQuality(newSellIn: number): void
   updateSellIn(): void
 }
 
-export class Item implements Itemer {
+export class Item implements Itemeble {
   name: string
   sellIn: number
   quality: number

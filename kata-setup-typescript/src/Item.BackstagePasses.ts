@@ -1,6 +1,6 @@
-import { Item, Itemer } from "./Item.js"
+import { Item, Itemeble } from "./Item.js"
 
-export class BackstagePasses extends Item implements Itemer {
+export class BackstagePasses extends Item implements Itemeble {
   constructor(sellIn: number, quality: number) {
     super("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
   }

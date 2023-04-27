@@ -1,6 +1,6 @@
-import { Item, Itemer } from "./Item.js"
+import { Item, Itemeble } from "./Item.js"
 
-export class Sulfuras extends Item implements Itemer {
+export class Sulfuras extends Item implements Itemeble {
   constructor(sellIn: number, quality: number) {
     super("Sulfuras, Hand of Ragnaros", sellIn, quality)
   }
