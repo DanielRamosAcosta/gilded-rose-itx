@@ -14,10 +14,6 @@ public abstract class Item {
     this.quality = quality;
   }
 
-  public boolean hasPassedSellIn() {
-    return sellIn < 0;
-  }
-
   public void decreaseSellIn() {
     sellIn -= 1;
   }
@@ -28,6 +24,10 @@ public abstract class Item {
   }
 
   protected abstract void doUpdateQuality();
+
+  protected boolean hasPassedSellIn() {
+    return sellIn < 0;
+  }
 
   protected void enforceQuality() {
     if (quality < 0) {
