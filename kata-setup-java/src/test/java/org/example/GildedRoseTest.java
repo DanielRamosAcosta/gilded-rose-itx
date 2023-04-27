@@ -6,97 +6,189 @@ import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
 
+  private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+
   private final String AGED_BRIE = "Aged Brie";
 
   private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
   @Test
   void decreasesQualityByOne() {
-    Item[] items = new Item[] { new Item("some-random-item", 5, 5) };
+    int sellIn = 5;
+    int quality = 5;
+    Item[] items = new Item[] { new Item("some-random-item", sellIn, quality) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
 
-    assertEquals(4, app.items[0].quality);
+    assertEquals(quality - 1, app.items[0].quality);
   }
 
   @Test
   void decreasesSellInByOne() {
-    Item[] items = new Item[] { new Item("some-random-item", 5, 5) };
+    int sellIn = 5;
+    int quality = 5;
+    Item[] items = new Item[] { new Item("some-random-item", sellIn, quality) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
 
-    assertEquals(4, app.items[0].sellIn);
+    assertEquals(sellIn - 1, app.items[0].sellIn);
   }
 
   @Test
   void decreasesQualityByTwoWhenExpired() {
-    Item[] items = new Item[] { new Item("some-random-item", 0, 5) };
+    int sellIn = 0;
+    int quality = 5;
+    Item[] items = new Item[] { new Item("some-random-item", sellIn, quality) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
 
-    assertEquals(3, app.items[0].quality);
+   assertEquals(quality - 2, app.items[0].quality);
   }
 
   @Test
   void qualityDoesNotGetNegative() {
-    Item[] items = new Item[] { new Item("some-random-item", 0, 1) };
+    int sellIn = 0;
+    int quality = 1;
+    Item[] items = new Item[] { new Item("some-random-item", sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(sellIn, app.items[0].quality);
+  }
+
+  @Test
+  void brieIncreasesQuality() {
+    int sellIn = 10;
+    int quality = 5;
+    Item[] items = new Item[] { new Item(AGED_BRIE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality + 1, app.items[0].quality);
+  }
+
+  @Test
+  void brieIncreasesDoubleQualityAfterSellIn() {
+    int sellIn = 0;
+    int quality = 5;
+    Item[] items = new Item[] { new Item(AGED_BRIE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality + 2, app.items[0].quality);
+  }
+
+  @Test
+  void qualityDoesNotGreaterThan50() {
+    int quality = 50;
+    int sellIn = 0;
+    Item[] items = new Item[] { new Item(AGED_BRIE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality, app.items[0].quality);
+  }
+
+  @Test
+  void sulfurasDoesNotChangeQuality() {
+    int sellIn = 0;
+    int quality = 80;
+    Item[] items = new Item[] { new Item(SULFURAS, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality, app.items[0].quality);
+  }
+
+  @Test
+  void sulfurasDoesNotChangeSellIn() {
+    int sellIn = 2;
+    int quality = 80;
+    Item[] items = new Item[] { new Item(SULFURAS, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(sellIn, app.items[0].sellIn);
+  }
+
+  @Test
+  void backstageIncreasesQuality() {
+    int sellIn = 15;
+    int quality = 10;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality + 1, app.items[0].quality);
+  }
+
+  @Test
+  void backstageIncreasesDoubleQualityWhen10Days() {
+    int sellIn = 10;
+    int quality = 10;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality + 2, app.items[0].quality);
+  }
+
+  @Test
+  void backstageIncreasesDoubleQualityWhen6Days() {
+    int sellIn = 6;
+    int quality = 10;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality + 2, app.items[0].quality);
+  }
+
+  @Test
+  void backstageIncreasesTripleQualityWhen5Days() {
+    int sellIn = 5;
+    int quality = 10;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality + 3, app.items[0].quality);
+  }
+
+  @Test
+  void backstageIncreasesTripleQualityWhen1Days() {
+    int sellIn = 1;
+    int quality = 10;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality + 3, app.items[0].quality);
+  }
+
+  @Test
+  void backstageLosesQualityWhenExpired() {
+    int sellIn = 0;
+    int quality = 10;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
 
     assertEquals(0, app.items[0].quality);
-  }
-
-  @Test
-  void brieIncreasesQuality() {
-    Item[] items = new Item[] { new Item(AGED_BRIE, 10, 5) };
-    GildedRose app = new GildedRose(items);
-
-    app.updateQuality();
-
-    assertEquals(6, app.items[0].quality);
-  }
-
-  @Test
-  void brieIncreasesDoubleQualityAfterSellIn() {
-    Item[] items = new Item[] { new Item(AGED_BRIE, 0, 5) };
-    GildedRose app = new GildedRose(items);
-
-    app.updateQuality();
-
-    assertEquals(7, app.items[0].quality);
-  }
-
-  @Test
-  void qualityDoesNotGreaterThan50() {
-    Item[] items = new Item[] { new Item(AGED_BRIE, 0, 50) };
-    GildedRose app = new GildedRose(items);
-
-    app.updateQuality();
-
-    assertEquals(50, app.items[0].quality);
-  }
-
-  @Test
-  void sulfurasDoesNotChangeQuality() {
-    Item[] items = new Item[] { new Item(SULFURAS, 0, 10) };
-    GildedRose app = new GildedRose(items);
-
-    app.updateQuality();
-
-    assertEquals(10, app.items[0].quality);
-  }
-
-  @Test
-  void sulfurasDoesNotChangeSellIn() {
-    Item[] items = new Item[] { new Item(SULFURAS, 2, 10) };
-    GildedRose app = new GildedRose(items);
-
-    app.updateQuality();
-
-    assertEquals(2, app.items[0].sellIn);
   }
 }
