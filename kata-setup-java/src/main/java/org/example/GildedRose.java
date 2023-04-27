@@ -21,9 +21,7 @@ class GildedRose {
 
     if (!item.isAgedBrie()
         && !item.isBackstage()) {
-      if (item.canReduceQuality()) {
-        item.quality = item.quality - 1;
-      }
+      item.decreaseQuality();
     } else {
       item.increaseQuality();
 
@@ -46,17 +44,16 @@ class GildedRose {
     }
 
     if (item.isBackstage()) {
-      item.quality = Item.MIN_QUALITY;
+      item.removeQuality();
       return;
     }
 
     if (item.isAgedBrie()) {
       item.increaseQuality();
-    } else {
-      if (item.canReduceQuality()) {
-        item.quality = item.quality - 1;
-      }
+      return;
     }
+
+    item.decreaseQuality();
   }
 
 }

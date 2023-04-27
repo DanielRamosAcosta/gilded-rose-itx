@@ -26,9 +26,19 @@ public class Item {
     this.quality = quality;
   }
 
+  void removeQuality() {
+    this.quality = MIN_QUALITY;
+  }
+
   void increaseQuality() {
     if (canIncreaseQuality()) {
       quality = quality + 1;
+    }
+  }
+
+  void decreaseQuality() {
+    if (canReduceQuality()) {
+      quality = quality - 1;
     }
   }
 
