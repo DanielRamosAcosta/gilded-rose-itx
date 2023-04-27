@@ -14,7 +14,9 @@ public abstract class Item {
     this.quality = quality;
   }
 
-  public void updateQuality() {
+  public abstract void preDecreaseSellIn();
+
+  public void decreaseSellIn() {
     sellIn -= 1;
   }
 

@@ -12,27 +12,11 @@ class GildedRose {
     for (Item item : items) {
 
       if (isSulfuras(item)) {
-        return;
+        continue;
       }
 
-      if (isAgedBrie(item) || isBackstagePasses(item)) {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1;
-
-          if (isBackstagePasses(item)) {
-            if (item.sellIn < 11) {
-              item.quality = item.quality + 1;
-            }
-            if (item.sellIn < 6) {
-              item.quality = item.quality + 1;
-            }
-          }
-        }
-      } else if (item.quality > 0) {
-        item.quality = item.quality - 1;
-      }
-
-      item.updateQuality();
+      item.preDecreaseSellIn();
+      item.decreaseSellIn();
 
       if (item.sellIn < 0) {
         if (isAgedBrie(item)) {
