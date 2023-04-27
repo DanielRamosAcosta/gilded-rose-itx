@@ -38,6 +38,21 @@ class GildedRoseTest {
   }
 
   @Test
+  void doesNotDecreaseQualityAt0() {
+    int quantity = 0;
+    int expectedQuantity = 0;
+    int sellIn = 0;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Apple", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
+
+  @Test
   void qualityCanNotBeNegative() {
     int quantity = 0;
     int expectedQuantity = 0;
@@ -83,6 +98,21 @@ class GildedRoseTest {
   }
 
   @Test
+  void agedBrieTopsAt50() {
+    int quantity = 49;
+    int expectedQuantity = quantity + 1;
+    int sellIn = 0;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
+
+  @Test
   void quantityTopsAt50() {
     int quantity = 50;
     int expectedQuantity = 50;
@@ -103,6 +133,21 @@ class GildedRoseTest {
     int expectedQuantity = 80;
     int sellIn = 10;
     int expectedSellIn = 10;
+    Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
+
+  @Test
+  void sulfurasNeverChangesEvenIfExpired() {
+    int quantity = 80;
+    int expectedQuantity = 80;
+    int sellIn = -1;
+    int expectedSellIn = -1;
     Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
@@ -174,9 +219,9 @@ class GildedRoseTest {
 
   @Test
   void backstageTopsAt50WhenNormalDate() {
-    int quantity = 50;
+    int quantity = 49;
     int expectedQuantity = 50;
-    int sellIn = 20;
+    int sellIn = 9;
     int expectedSellIn = sellIn- 1;
     Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
@@ -189,7 +234,7 @@ class GildedRoseTest {
 
   @Test
   void backstageTopsAt50WhenDoubleDate() {
-    int quantity = 50;
+    int quantity = 49;
     int expectedQuantity = 50;
     int sellIn = 5;
     int expectedSellIn = sellIn- 1;
