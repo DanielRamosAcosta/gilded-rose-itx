@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { GildedRose } from "./GildedRose.js"
 import { Item } from "./Item.js"
-import { AGED_BRIE_NAME, SULFURAS_NAME } from "./constants/items-names.js"
+import { AGED_BRIE_NAME, BACKSTAGE_PASSES_NAME, SULFURAS_NAME } from "./constants/items-names.js"
 
 describe("Gilded Rose", () => {
   it("an unknown item must decrement sellIn and quality by one each day", () => {
@@ -60,5 +60,37 @@ describe("Gilded Rose", () => {
 
     expect(items[0].sellIn).toBe(40)
     expect(items[0].quality).toBe(40)
+  })
+
+  it("a backstage pass should increase quality by one if concert date is more than 10 days away", () => {
+    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 15, 5)])
+
+    const items = gildedRose.updateQuality()
+
+    expect(items[0].quality).toBe(6)
+  })
+
+  it("a backstage pass should increase quality by two if concert date is less than 10 days away, and more than 5", () => {
+    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 8, 5)])
+
+    const items = gildedRose.updateQuality()
+
+    expect(items[0].quality).toBe(7)
+  })
+
+  it("a backstage pass should increase quality by three if concert date is less than 5 days away", () => {
+    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 3, 5)])
+
+    const items = gildedRose.updateQuality()
+
+    expect(items[0].quality).toBe(8)
+  })
+
+  it("a backstage pass should lose all quality concert date is expired", () => {
+    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 0, 10)])
+
+    const items = gildedRose.updateQuality()
+
+    expect(items[0].quality).toBe(0)
   })
 })
