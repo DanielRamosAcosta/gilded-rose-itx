@@ -5,6 +5,8 @@ export enum ItemType {
   Normal,
 }
 
+const HIGH_QUALITY_THRESHOLD = 50
+
 export class Item {
   name: string
   sellIn: number
@@ -38,12 +40,18 @@ export class Item {
     return this.isType(ItemType.Normal)
   }
 
-  increaseQuality(amount = 1) : void {
-    this.quality = this.quality + amount;
+  increaseQuality(amount = 1): void {
+    this.quality = this.quality + amount
   }
 
-  decreaseQuality(amount = 1) : void {
-    this.quality = this.quality - amount;
+  decreaseQuality(amount = 1): void {
+    this.quality = this.quality - amount
   }
 
+  isQualityAboveZero(): boolean {
+    return this.quality > 0
+  }
+  isQualityAboveThreshold(): boolean {
+    return this.quality < HIGH_QUALITY_THRESHOLD
+  }
 }
