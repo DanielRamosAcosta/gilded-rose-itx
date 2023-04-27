@@ -14,15 +14,32 @@ class GildedRoseTest {
   }
 
   @Test
-  void decrementQualityWhenTimePassed() {
+  void updatesSellInAndQuantityWhenTimePassed() {
     int quantity = 5;
-    int expectedQuantityDecrement = 1;
-    int expected = quantity - expectedQuantityDecrement;
-    Item[] items = new Item[] { new Item("Apple", 10, quantity) };
+    int expectedQuantity = quantity - 1;
+    int sellIn = 10;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Apple", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
 
-    assertEquals(expected, app.items[0].quality);
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
+
+  @Test
+  void decreasesQualityAtDoubleRateWhenSellInIs0() {
+    int quantity = 5;
+    int expectedQuantity = quantity - 2;
+    int sellIn = 0;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Apple", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
   }
 }
