@@ -28,16 +28,12 @@ class GildedRose {
         item.quality = item.quality + 1;
 
         if (item.isBackstage()) {
-          if (item.sellIn < 11) {
-            if (item.canIncreaseQuality()) {
-              item.quality = item.quality + 1;
-            }
+          if (item.sellIn < 11 && item.canIncreaseQuality()) {
+            item.quality = item.quality + 1;
           }
 
-          if (item.sellIn < 6) {
-            if (item.canIncreaseQuality()) {
-              item.quality = item.quality + 1;
-            }
+          if (item.sellIn < 6 && item.canIncreaseQuality()) {
+            item.quality = item.quality + 1;
           }
         }
       }
@@ -45,7 +41,7 @@ class GildedRose {
 
     item.sellIn = item.sellIn - 1;
 
-    if (item.sellIn < Item.MIN_SELL_IN) {
+    if (item.isExpired()) {
       if (!item.isAgedBrie()) {
         if (!item.isBackstage()) {
           if (item.canReduceQuality()) {

@@ -26,6 +26,10 @@ public class Item {
     this.quality = quality;
   }
 
+  boolean isExpired() {
+    return this.sellIn < MIN_SELL_IN;
+  }
+
   boolean canIncreaseQuality() {
     return this.quality < MAX_QUALITY;
   }
