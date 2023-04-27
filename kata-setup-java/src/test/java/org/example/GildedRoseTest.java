@@ -73,7 +73,7 @@ class GildedRoseTest {
     int expectedQuantity = quantity+1;
     int sellIn = 5;
     int expectedSellIn = sellIn - 1;
-    Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
+    Item[] items = new Item[] { new AgedBrie("Aged Brie", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -88,7 +88,7 @@ class GildedRoseTest {
     int expectedQuantity = quantity + 2;
     int sellIn = 0;
     int expectedSellIn = sellIn - 1;
-    Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
+    Item[] items = new Item[] { new AgedBrie("Aged Brie", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -103,7 +103,7 @@ class GildedRoseTest {
     int expectedQuantity = quantity + 1;
     int sellIn = 0;
     int expectedSellIn = sellIn - 1;
-    Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
+    Item[] items = new Item[] { new AgedBrie("Aged Brie", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -118,7 +118,7 @@ class GildedRoseTest {
     int expectedQuantity = 50;
     int sellIn = 10;
     int expectedSellIn = sellIn - 1;
-    Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
+    Item[] items = new Item[] { new AgedBrie("Aged Brie", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -133,7 +133,7 @@ class GildedRoseTest {
     int expectedQuantity = 80;
     int sellIn = 10;
     int expectedSellIn = 10;
-    Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", sellIn, quantity) };
+    Item[] items = new Item[] { new Sulfuras("Sulfuras, Hand of Ragnaros", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -148,7 +148,7 @@ class GildedRoseTest {
     int expectedQuantity = 80;
     int sellIn = -1;
     int expectedSellIn = -1;
-    Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", sellIn, quantity) };
+    Item[] items = new Item[] { new Sulfuras("Sulfuras, Hand of Ragnaros", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -163,7 +163,7 @@ class GildedRoseTest {
     int expectedQuantity = quantity+1;
     int sellIn = 20;
     int expectedSellIn = sellIn- 1;
-    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    Item[] items = new Item[] { new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -178,7 +178,7 @@ class GildedRoseTest {
     int expectedQuantity = quantity+2;
     int sellIn = 10;
     int expectedSellIn = sellIn- 1;
-    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    Item[] items = new Item[] { new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -193,7 +193,7 @@ class GildedRoseTest {
     int expectedQuantity = quantity+3;
     int sellIn = 5;
     int expectedSellIn = sellIn- 1;
-    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    Item[] items = new Item[] { new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -208,7 +208,7 @@ class GildedRoseTest {
     int expectedQuantity = 0;
     int sellIn = 0;
     int expectedSellIn = sellIn - 1;
-    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    Item[] items = new Item[] { new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -223,7 +223,7 @@ class GildedRoseTest {
     int expectedQuantity = 50;
     int sellIn = 9;
     int expectedSellIn = sellIn- 1;
-    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    Item[] items = new Item[] { new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -238,7 +238,7 @@ class GildedRoseTest {
     int expectedQuantity = 50;
     int sellIn = 5;
     int expectedSellIn = sellIn- 1;
-    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    Item[] items = new Item[] { new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();
@@ -255,7 +255,7 @@ class GildedRoseTest {
     int expectedQuantity = 50;
     int sellIn = 20;
     int expectedSellIn = sellIn - 1;
-    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    Item[] items = new Item[] { new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
 
     app.updateQuality();

@@ -22,33 +22,10 @@ public class Item {
     this.quality = quality;
   }
 
-  void increaseDefaultItem() {
+  void update() {
     decreaseQuality();
     if (hasExpired()) {
       decreaseQuality();
-    }
-  }
-
-  void increaseAgedBrieQuality() {
-    increaseQuality();
-    if (hasExpired()) {
-      increaseQuality();
-    }
-  }
-
-  void increaseBackstageQuality() {
-    if (hasMaxQuality()) {
-      increaseQuality();
-      if (this.sellIn < 10) {
-        increaseQuality();
-      }
-
-      if (this.sellIn < 5) {
-        increaseQuality();
-      }
-    }
-    if (this.hasExpired()) {
-      this.quality = 0;
     }
   }
 
@@ -64,14 +41,12 @@ public class Item {
 
   void decreaseQuality() {
     if (!hasMinimumQuality()) {
-      if (!isSulfuras()) {
         this.quality = this.quality - 1;
-      }
     }
   }
 
   void increaseQuality() {
-    if (hasMaxQuality()) {
+    if (!hasMaxQuality()) {
       this.quality = this.quality + 1;
     }
   }
@@ -93,14 +68,11 @@ public class Item {
   }
 
   boolean hasMaxQuality() {
-    return this.quality < MAX_QUALITY;
+    return this.quality >= MAX_QUALITY;
   }
 
   @Override
   public String toString() {
     return this.name + ", " + this.sellIn + ", " + this.quality;
-  }
-
-  public void increaseSulfurasQuality() {
   }
 }

@@ -7,6 +7,14 @@ public class AgedBrie extends Item {
   }
 
   @Override
+  void update() {
+    increaseQuality();
+    if (hasExpired()) {
+      increaseQuality();
+    }
+  }
+
+  @Override
   void decreaseSellIn() {
     super.decreaseSellIn();
   }

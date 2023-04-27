@@ -7,6 +7,11 @@ public class Sulfuras extends Item {
   }
 
   @Override
+  void update() {
+
+  }
+
+  @Override
   void decreaseSellIn() {
   }
 

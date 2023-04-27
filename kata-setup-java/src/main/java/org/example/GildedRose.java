@@ -12,17 +12,7 @@ class GildedRose {
     for (Item item : items) {
 
       item.decreaseSellIn();
-
-      if (item.isBackstage()) {
-        item.increaseBackstageQuality();
-      } else if (item.isAgedBrie()) {
-        item.increaseAgedBrieQuality();
-      } else if (item.isSulfuras()) {
-        item.increaseSulfurasQuality();
-      } else {
-
-        item.increaseDefaultItem();
-      }
+      item.update();
     }
   }
 
