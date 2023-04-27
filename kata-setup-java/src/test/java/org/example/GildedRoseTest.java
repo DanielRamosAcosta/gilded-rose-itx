@@ -162,4 +162,19 @@ class GildedRoseTest {
     assertEquals(expectedQuantity, app.items[0].quality);
     assertEquals(expectedSellIn, app.items[0].sellIn);
   }
+
+  @Test
+  void backstageIncreasesAtTripleRateWhenSellInLess0() {
+    int quantity = 20;
+    int expectedQuantity = 0;
+    int sellIn = 0;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
 }
