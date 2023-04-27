@@ -42,4 +42,19 @@ class GildedRoseTest {
     assertEquals(expectedQuantity, app.items[0].quality);
     assertEquals(expectedSellIn, app.items[0].sellIn);
   }
+
+  @Test
+  void qualityCanNotBeNegative() {
+    int quantity = 0;
+    int expectedQuantity = 0;
+    int sellIn = 5;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Apple", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
 }
