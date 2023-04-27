@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest"
 import { GildedRose } from "./GildedRose.js"
+import { AgedBrie } from "./Item.AgedBrie.js"
+import { BackstagePasses } from "./Item.BackstagePasses.js"
+import { Sulfuras } from "./Item.Sulfuras.js"
 import { Item } from "./Item.js"
-import { AGED_BRIE_NAME, BACKSTAGE_PASSES_NAME, SULFURAS_NAME } from "./constants/items-names.js"
 
 describe("Gilded Rose", () => {
   it("an unknown item must decrement sellIn and quality by one each day", () => {
@@ -30,7 +32,7 @@ describe("Gilded Rose", () => {
   })
 
   it("aged items increase quality by one each day if they are on sellIn date", () => {
-    const gildedRose = new GildedRose([new Item(AGED_BRIE_NAME, 5, 5)])
+    const gildedRose = new GildedRose([new AgedBrie(5, 5)])
 
     const items = gildedRose.updateQuality()
 
@@ -38,7 +40,7 @@ describe("Gilded Rose", () => {
   })
 
   it("aged items increase quality by two each day if they are over sellIn date", () => {
-    const gildedRose = new GildedRose([new Item(AGED_BRIE_NAME, 0, 5)])
+    const gildedRose = new GildedRose([new AgedBrie(0, 5)])
 
     const items = gildedRose.updateQuality()
 
@@ -46,7 +48,7 @@ describe("Gilded Rose", () => {
   })
 
   it("an item quality should never be greater than 50", () => {
-    const gildedRose = new GildedRose([new Item(AGED_BRIE_NAME, 0, 50)])
+    const gildedRose = new GildedRose([new AgedBrie(0, 50)])
 
     const items = gildedRose.updateQuality()
 
@@ -54,7 +56,7 @@ describe("Gilded Rose", () => {
   })
 
   it("a legendary item should never loss sellIn and quality", () => {
-    const gildedRose = new GildedRose([new Item(SULFURAS_NAME, 40, 40)])
+    const gildedRose = new GildedRose([new Sulfuras(40, 40)])
 
     const items = gildedRose.updateQuality()
 
@@ -63,7 +65,7 @@ describe("Gilded Rose", () => {
   })
 
   it("a backstage pass should increase quality by one if concert date is more than 10 days away", () => {
-    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 15, 5)])
+    const gildedRose = new GildedRose([new BackstagePasses(15, 5)])
 
     const items = gildedRose.updateQuality()
 
@@ -71,7 +73,7 @@ describe("Gilded Rose", () => {
   })
 
   it("a backstage pass should increase quality by two if concert date is less than 10 days away, and more than 5", () => {
-    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 8, 5)])
+    const gildedRose = new GildedRose([new BackstagePasses(8, 5)])
 
     const items = gildedRose.updateQuality()
 
@@ -79,7 +81,7 @@ describe("Gilded Rose", () => {
   })
 
   it("a backstage pass should increase quality by three if concert date is less than 5 days away", () => {
-    const gildedRose = new GildedRose([new Item(BACKSTAGE_PASSES_NAME, 3, 5)])
+    const gildedRose = new GildedRose([new BackstagePasses(3, 5)])
 
     const items = gildedRose.updateQuality()
 

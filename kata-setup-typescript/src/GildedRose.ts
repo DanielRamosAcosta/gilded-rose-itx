@@ -1,6 +1,6 @@
-import { MAX_QUALITY } from "./constants/max-quality"
 import { Item } from "./Item.js"
 import { AGED_BRIE_NAME, BACKSTAGE_PASSES_NAME, SULFURAS_NAME } from "./constants/items-names.js"
+import { MAX_QUALITY } from "./constants/max-quality"
 export class GildedRose {
   items: Array<Item>
 
@@ -10,7 +10,7 @@ export class GildedRose {
 
   updateItemSellIn = (item: Item) => {
     if (item.name != SULFURAS_NAME) {
-      item.sellIn = item.sellIn - 1
+      item.decreaseSellIn()
     }
   }
 
