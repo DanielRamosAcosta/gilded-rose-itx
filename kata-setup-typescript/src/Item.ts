@@ -8,9 +8,9 @@ export enum ItemType {
 const HIGH_QUALITY_THRESHOLD = 50
 
 export class Item {
-  name: string
+  public name: string
   sellIn: number
-  quality: number
+  public quality: number
   type: ItemType
 
   constructor(name: string, sellIn: number, quality: number, type: ItemType) {
@@ -40,18 +40,28 @@ export class Item {
     return this.isType(ItemType.Normal)
   }
 
-  increaseQuality(amount = 1): void {
-    this.quality = this.quality + amount
-  }
-
-  decreaseQuality(amount = 1): void {
-    this.quality = this.quality - amount
-  }
-
   isQualityAboveZero(): boolean {
     return this.quality > 0
   }
   isQualityAboveThreshold(): boolean {
     return this.quality < HIGH_QUALITY_THRESHOLD
+  }
+  increaseQuality(amount: number): void {
+    this.quality = Math.min(50, this.quality + amount)
+  }
+
+  decreaseQuality(amount: number): void {
+    this.quality = Math.max(0, this.quality - amount)
+  }
+
+  updateQuality(): void {
+    if (this.sellIn < 0) {
+      this.decreaseQuality(2)
+    } else {
+      this.decreaseQuality(1)
+    }
+  }
+  updateSellIn(): void {
+    this.sellIn = this.sellIn - 1
   }
 }

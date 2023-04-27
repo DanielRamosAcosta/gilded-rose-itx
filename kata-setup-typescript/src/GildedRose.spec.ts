@@ -1,17 +1,18 @@
 import { describe, it, expect } from "vitest"
 import { GildedRose } from "./GildedRose.js"
 import { Item, ItemType } from "./Item.js"
-import { beforeEach } from "node:test"
+import { Legendary } from "./LegendaryItem.js"
+import { Aged } from "./AgedItem.js"
+import { Backstage } from "./BackstageItem.js"
 
 const aNormal = (sellIn: number, quality: number) => new Item("Normal item", sellIn, quality, ItemType.Normal)
 
-const aLegendary = (sellIn: number, quality: number) =>
-  new Item("Sulfuras, Hand of Ragnaros", sellIn, quality, ItemType.Legendary)
+const aLegendary = (sellIn: number, quality: number) => new Legendary("Sulfuras, Hand of Ragnaros", sellIn, quality)
 
-const anAged = (sellIn: number, quality: number) => new Item("Aged Brie", sellIn, quality, ItemType.Aged)
+const anAged = (sellIn: number, quality: number) => new Aged("Aged Brie", sellIn, quality)
 
 const aBackstage = (sellIn: number, quality: number) =>
-  new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality, ItemType.Backstage)
+  new Backstage("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
 
 describe("Gilded Rose", () => {
   describe("should update item quality successfully", () => {
