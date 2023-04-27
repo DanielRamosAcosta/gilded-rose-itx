@@ -61,8 +61,23 @@ class GildedRoseTest {
   @Test
   void agedBrieIncresasesQuality() {
     int quantity = 10;
-    int expectedQuantity = 10+1;
+    int expectedQuantity = quantity+1;
     int sellIn = 5;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
+
+  @Test
+  void agedBrieDecreaseDoubleQualityAfterSellIn() {
+    int quantity = 10;
+    int expectedQuantity = quantity + 2;
+    int sellIn = 0;
     int expectedSellIn = sellIn - 1;
     Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
