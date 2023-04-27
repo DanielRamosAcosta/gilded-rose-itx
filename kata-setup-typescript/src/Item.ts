@@ -20,13 +20,18 @@ export class Item implements Itemer {
     return this.quality < MAX_QUALITY
   }
 
-  updateQuality(newSellIn: number): void {
-    if (this.sellIn < newSellIn) {
-      if (this.quality === 0) {
-        return
-      }
-      this.quality--
+  updateQuality(): void {
+    if (!this.isMaxQuality()) {
+      return
     }
+    if (this.quality === 0) {
+      return
+    }
+    if (this.sellIn < 0) {
+      this.quality -= 2
+      return
+    }
+    this.quality--
   }
 
   updateSellIn(): void {

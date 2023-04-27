@@ -5,7 +5,7 @@ export class Sulfuras extends Item implements Itemer {
     super("Sulfuras, Hand of Ragnaros", sellIn, quality)
   }
 
-  updateQuality(newSellIn: number): void {
+  updateQuality(): void {
     return
   }
 

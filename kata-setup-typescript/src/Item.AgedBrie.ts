@@ -5,11 +5,18 @@ export class AgedBrie extends Item implements Itemer {
     super("Aged Brie", sellIn, quality)
   }
 
-  updateQuality(newSellIn: number): void {
+  updateQuality(): void {
+    if (!this.isMaxQuality()) {
+      return
+    }
     if (this.sellIn < 0) {
       this.quality += 2
     } else {
       this.quality++
     }
+  }
+
+  updateSellIn(): void {
+    this.decreaseSellIn()
   }
 }
