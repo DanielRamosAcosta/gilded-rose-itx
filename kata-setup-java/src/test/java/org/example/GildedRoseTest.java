@@ -12,6 +12,8 @@ class GildedRoseTest {
 
   private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
+  private final int MAX_QUALITY = 50;
+
   @Test
   void decreasesQualityByOne() {
     int sellIn = 5;
@@ -93,12 +95,24 @@ class GildedRoseTest {
 
     app.updateQuality();
 
-    assertEquals(quality, app.items[0].quality);
+    assertEquals(MAX_QUALITY, app.items[0].quality);
   }
 
   @Test
   void sulfurasDoesNotChangeQuality() {
-    int sellIn = 0;
+    int sellIn = 2;
+    int quality = 80;
+    Item[] items = new Item[] { new Item(SULFURAS, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality, app.items[0].quality);
+  }
+
+  @Test
+  void sulfurasDoesNotChangeQualityWhenExpired() {
+    int sellIn = -1;
     int quality = 80;
     Item[] items = new Item[] { new Item(SULFURAS, sellIn, quality) };
     GildedRose app = new GildedRose(items);
@@ -145,6 +159,18 @@ class GildedRoseTest {
   }
 
   @Test
+  void backstageIncreasesDoubleQualityWhen10DaysAndNotGreaterThan50() {
+    int sellIn = 10;
+    int quality = 49;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(MAX_QUALITY, app.items[0].quality);
+  }
+
+  @Test
   void backstageIncreasesDoubleQualityWhen6Days() {
     int sellIn = 6;
     int quality = 10;
@@ -157,6 +183,18 @@ class GildedRoseTest {
   }
 
   @Test
+  void backstageIncreasesDoubleQualityWhen6DaysAndNotGreaterThan50() {
+    int sellIn = 6;
+    int quality = 49;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(MAX_QUALITY, app.items[0].quality);
+  }
+
+  @Test
   void backstageIncreasesTripleQualityWhen5Days() {
     int sellIn = 5;
     int quality = 10;
@@ -166,6 +204,18 @@ class GildedRoseTest {
     app.updateQuality();
 
     assertEquals(quality + 3, app.items[0].quality);
+  }
+
+  @Test
+  void backstageIncreasesTripleQualityWhen5DaysAndNotGreaterThan50() {
+    int sellIn = 5;
+    int quality = 48;
+    Item[] items = new Item[] { new Item(BACKSTAGE, sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(MAX_QUALITY, app.items[0].quality);
   }
 
   @Test
