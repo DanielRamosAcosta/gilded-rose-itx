@@ -7,14 +7,11 @@ public class ItemStandard extends Item {
   }
 
   @Override
-  public void updateQuality() {
+  public void doUpdateQuality() {
     if (hasPassedSellIn()) {
       quality = quality - 2;
     } else {
       quality = quality - 1;
-    }
-    if (quality < 0) {
-      quality = 0;
     }
   }
 

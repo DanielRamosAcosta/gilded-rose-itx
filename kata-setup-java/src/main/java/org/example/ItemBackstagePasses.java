@@ -7,7 +7,7 @@ public class ItemBackstagePasses extends Item {
   }
 
   @Override
-  public void updateQuality() {
+  public void doUpdateQuality() {
     if (hasPassedSellIn()) {
       quality = 0;
     } else {
@@ -17,9 +17,6 @@ public class ItemBackstagePasses extends Item {
       }
       if (sellIn < 6) {
         quality = quality + 1;
-      }
-      if (quality > 50) {
-        quality = 50;
       }
     }
   }

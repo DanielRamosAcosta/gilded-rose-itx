@@ -22,7 +22,21 @@ public abstract class Item {
     sellIn -= 1;
   }
 
-  public abstract void updateQuality();
+  public void updateQuality() {
+    doUpdateQuality();
+    enforceQuality();
+  }
+
+  protected abstract void doUpdateQuality();
+
+  protected void enforceQuality() {
+    if (quality < 0) {
+      quality = 0;
+    }
+    if (quality > 50) {
+      quality = 50;
+    }
+  }
 
   @Override
   public String toString() {

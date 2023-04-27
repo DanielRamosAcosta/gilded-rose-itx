@@ -16,8 +16,8 @@ public class ItemMother {
     return new ItemAgedBrie(sellIn, quality);
   }
 
-  public static Item createSulfuras(int sellIn, int quality) {
-    return new ItemSulfuras(sellIn, quality);
+  public static Item createSulfuras(int sellIn) {
+    return new ItemSulfuras(sellIn);
   }
 
   public static Item createBackstagePasses(int sellIn, int quality) {

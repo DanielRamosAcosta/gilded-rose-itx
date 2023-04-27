@@ -2,8 +2,10 @@ package org.example;
 
 public class ItemSulfuras extends Item {
 
-  public ItemSulfuras(int sellIn, int quality) {
-    super("Sulfuras, Hand of Ragnaros", sellIn, quality);
+  private static final int FIXED_QUALITY = 80;
+
+  public ItemSulfuras(int sellIn) {
+    super("Sulfuras, Hand of Ragnaros", sellIn, FIXED_QUALITY);
   }
 
   @Override
@@ -12,7 +14,12 @@ public class ItemSulfuras extends Item {
   }
 
   @Override
-  public void updateQuality() {
+  public void doUpdateQuality() {
     // Nothing
+  }
+
+  @Override
+  protected void enforceQuality() {
+    quality = FIXED_QUALITY;
   }
 }

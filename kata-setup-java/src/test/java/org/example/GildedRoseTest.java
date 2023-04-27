@@ -24,8 +24,8 @@ class GildedRoseTest {
         Arguments.of(createAgedBrie(-1, 10), -2, 12),
         Arguments.of(createAgedBrie(-1, 50), -2, 50),
 
-        Arguments.of(createSulfuras(5, 80), 5, 80),
-        Arguments.of(createSulfuras(-1, 80), -1, 80),
+        Arguments.of(createSulfuras(5), 5, 80),
+        Arguments.of(createSulfuras(-1), -1, 80),
 
         Arguments.of(createBackstagePasses(30, 10), 29, 11),
         Arguments.of(createBackstagePasses(10, 10), 9, 12),
