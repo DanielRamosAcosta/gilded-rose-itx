@@ -10,19 +10,15 @@ export class GildedRose {
   updateQuality() {
     this.items.forEach((item) => {
       if (!this.isAgedBrie(item) && !this.isBackstage(item)) {
-        if (item.hasQuality()) {
-          if (!this.isSulfuras(item)) {
-            item.decreaseQuality()
-          }
+        if (item.hasQuality() && !this.isSulfuras(item)) {
+          item.decreaseQuality()
         }
       } else {
         if (item.hasLessThanMaxQuality()) {
           item.increaseQuality()
           if (this.isBackstage(item)) {
-            if (this.isLessThanTenDaysToBackstage(item)) {
-              if (item.hasLessThanMaxQuality()) {
-                item.increaseQuality()
-              }
+            if (this.isLessThanTenDaysToBackstage(item) && item.hasLessThanMaxQuality()) {
+              item.increaseQuality()
             }
             if (this.isLessThanFiveDaysToBackstage(item)) {
               if (item.hasLessThanMaxQuality()) {
