@@ -134,10 +134,25 @@ class GildedRoseTest {
   }
 
   @Test
-  void backstageIncreasesDoubleAt10SellIn() {
+  void backstageIncreasesAtDoubleRateWhenSellInIsBetween10and5() {
     int quantity = 20;
     int expectedQuantity = quantity+2;
     int sellIn = 10;
+    int expectedSellIn = sellIn- 1;
+    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
+
+  @Test
+  void backstageIncreasesAtTripleRateWhenSellInIsBetween5Or0() {
+    int quantity = 20;
+    int expectedQuantity = quantity+3;
+    int sellIn = 5;
     int expectedSellIn = sellIn- 1;
     Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
