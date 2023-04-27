@@ -15,7 +15,7 @@ public class ItemAgedBrie extends Item {
 
   @Override
   public void postDecreaseSellIn() {
-    if (sellIn < 0) {
+    if (hasPassedSellIn()) {
       if (quality < 50) {
         quality = quality + 1;
       }

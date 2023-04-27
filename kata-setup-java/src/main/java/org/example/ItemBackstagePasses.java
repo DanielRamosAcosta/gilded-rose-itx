@@ -21,7 +21,7 @@ public class ItemBackstagePasses extends Item {
 
   @Override
   public void postDecreaseSellIn() {
-    if (sellIn < 0) {
+    if (hasPassedSellIn()) {
       quality = 0;
     }
   }

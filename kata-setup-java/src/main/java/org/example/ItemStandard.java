@@ -15,7 +15,7 @@ public class ItemStandard extends Item {
 
   @Override
   public void postDecreaseSellIn() {
-    if (sellIn < 0) {
+    if (hasPassedSellIn()) {
       if (quality > 0) {
         quality = quality - 1;
       }

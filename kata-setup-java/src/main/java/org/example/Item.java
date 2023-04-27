@@ -14,6 +14,10 @@ public abstract class Item {
     this.quality = quality;
   }
 
+  public boolean hasPassedSellIn() {
+    return sellIn < 0;
+  }
+
   public abstract void preDecreaseSellIn();
 
   public void decreaseSellIn() {
