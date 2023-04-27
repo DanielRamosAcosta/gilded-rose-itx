@@ -2,16 +2,10 @@ package org.example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
-  @Test
-  void foo() {
-    Item[] items = new Item[] { new Item("fixme", 0, 0) };
-    GildedRose app = new GildedRose(items);
-    app.updateQuality();
-    assertEquals("fixme", app.items[0].name);
-  }
 
   @Test
   void updatesSellInAndQuantityWhenTimePassed() {
@@ -105,8 +99,8 @@ class GildedRoseTest {
 
   @Test
   void sulfurasNeverChanges() {
-    int quantity = 50;
-    int expectedQuantity = 50;
+    int quantity = 80;
+    int expectedQuantity = 80;
     int sellIn = 10;
     int expectedSellIn = 10;
     Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", sellIn, quantity) };
@@ -168,6 +162,23 @@ class GildedRoseTest {
     int quantity = 20;
     int expectedQuantity = 0;
     int sellIn = 0;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
+
+  //TODO: We should reset items to 50 if defined with more
+  @Test
+  @Disabled
+  void NoItemExceptSulfurasIsGreaterThan50() {
+    int quantity = 60;
+    int expectedQuantity = 50;
+    int sellIn = 20;
     int expectedSellIn = sellIn - 1;
     Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quantity) };
     GildedRose app = new GildedRose(items);
