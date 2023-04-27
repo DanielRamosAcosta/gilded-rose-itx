@@ -37,4 +37,13 @@ export class Item {
   isNormal(): boolean {
     return this.isType(ItemType.Normal)
   }
+
+  increaseQuality(amount = 1) : void {
+    this.quality = this.quality + amount;
+  }
+
+  decreaseQuality(amount = 1) : void {
+    this.quality = this.quality - amount;
+  }
+
 }
