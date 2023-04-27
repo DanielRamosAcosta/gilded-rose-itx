@@ -6,13 +6,14 @@ import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
 
-  private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+  private  final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
 
   private final String AGED_BRIE = "Aged Brie";
 
   private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
   private final int MAX_QUALITY = 50;
+  public  final int MIN_QUALITY = 0;
 
   @Test
   void decreasesQualityByOne() {
@@ -59,7 +60,19 @@ class GildedRoseTest {
 
     app.updateQuality();
 
-    assertEquals(sellIn, app.items[0].quality);
+    assertEquals(MIN_QUALITY, app.items[0].quality);
+  }
+
+  @Test
+  void qualityDoesNotGetNegativeWithZeroQuality() {
+    int sellIn = 0;
+    int quality = MIN_QUALITY;
+    Item[] items = new Item[] { new Item("some-random-item", sellIn, quality) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(quality, app.items[0].quality);
   }
 
   @Test
