@@ -9,9 +9,9 @@ public class ItemAgedBrie extends Item {
   @Override
   public void doUpdateQuality() {
     if (hasPassedSellIn()) {
-      quality = quality + 2;
+      quality.increase(2);
     } else {
-      quality = quality + 1;
+      quality.increase(1);
     }
   }
 }

@@ -5,6 +5,7 @@ import static org.example.mothers.ItemMother.createBackstagePasses;
 import static org.example.mothers.ItemMother.createSulfuras;
 import static org.example.mothers.ItemMother.createWine;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
 
@@ -43,7 +44,7 @@ class GildedRoseTest {
 
     app.updateQuality();
 
-    assertEquals(expectedQuality, item.quality);
+    assertTrue(item.hasQualityValue(expectedQuality));
     assertEquals(expectedSellIn, item.sellIn);
   }
 

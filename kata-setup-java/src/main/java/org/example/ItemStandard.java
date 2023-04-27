@@ -9,9 +9,9 @@ public class ItemStandard extends Item {
   @Override
   public void doUpdateQuality() {
     if (hasPassedSellIn()) {
-      quality = quality - 2;
+      quality.decrease(2);
     } else {
-      quality = quality - 1;
+      quality.decrease(1);
     }
   }
 

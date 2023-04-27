@@ -20,6 +20,6 @@ public class ItemSulfuras extends Item {
 
   @Override
   protected void enforceQuality() {
-    quality = FIXED_QUALITY;
+    // Nothing
   }
 }

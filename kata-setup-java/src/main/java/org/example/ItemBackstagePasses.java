@@ -9,14 +9,14 @@ public class ItemBackstagePasses extends Item {
   @Override
   public void doUpdateQuality() {
     if (hasPassedSellIn()) {
-      quality = 0;
+      quality.reset();
     } else {
-      quality = quality + 1;
+      quality.increase(1);
       if (sellIn < 11) {
-        quality = quality + 1;
+        quality.increase(1);
       }
       if (sellIn < 6) {
-        quality = quality + 1;
+        quality.increase(1);
       }
     }
   }

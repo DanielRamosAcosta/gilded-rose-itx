@@ -1,17 +1,19 @@
 package org.example;
 
+import org.example.quality.Quality;
+
 public abstract class Item {
 
   public String name;
 
   public int sellIn;
 
-  public int quality;
+  public Quality quality;
 
   public Item(String name, int sellIn, int quality) {
     this.name = name;
     this.sellIn = sellIn;
-    this.quality = quality;
+    this.quality = new Quality(quality);
   }
 
   public void decreaseSellIn() {
@@ -30,12 +32,12 @@ public abstract class Item {
   }
 
   protected void enforceQuality() {
-    if (quality < 0) {
-      quality = 0;
-    }
-    if (quality > 50) {
-      quality = 50;
-    }
+    quality.enforceIsNotBelowZero();
+    quality.enforceIsNotOverFifty();
+  }
+
+  public boolean hasQualityValue(int value) {
+    return quality.hasQualityValue(value);
   }
 
   @Override
