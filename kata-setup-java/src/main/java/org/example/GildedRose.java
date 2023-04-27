@@ -22,13 +22,13 @@ class GildedRose {
           item.quality = item.increaseQuality();
 
           if (item.isBackstage()) {
-            if (sellInIsLowerThanTen(item)) {
+            if (item.sellInIsLowerThanTen()) {
               if (item.hasLowerThanMaxQuality()) {
                 item.quality = item.increaseQuality();
               }
             }
 
-            if (sellInIsLowerThanFive(item)) {
+            if (item.sellInIsLowerThanFive()) {
               if (item.hasLowerThanMaxQuality()) {
                 item.quality = item.increaseQuality();
               }
@@ -38,7 +38,7 @@ class GildedRose {
       }
 
       if (!item.isSulfuras()) {
-        item.sellIn = sellInDecrease(item);
+        item.sellIn = item.sellInDecrease();
       }
 
       if (item.sellIn < Item.MIN_QUALITY) {
@@ -50,7 +50,7 @@ class GildedRose {
               }
             }
           } else {
-            item.quality = resetQuality(item);
+            item.quality = item.resetQuality();
           }
         } else {
           if (item.hasLowerThanMaxQuality()) {
@@ -59,22 +59,6 @@ class GildedRose {
         }
       }
     }
-  }
-
-  private static int resetQuality(Item item) {
-    return item.quality - item.quality;
-  }
-
-  private static int sellInDecrease(Item item) {
-    return item.sellIn - 1;
-  }
-
-  private static boolean sellInIsLowerThanFive(Item item) {
-    return item.sellIn <= 5;
-  }
-
-  private static boolean sellInIsLowerThanTen(Item item) {
-    return item.sellIn <= 10;
   }
 
 }
