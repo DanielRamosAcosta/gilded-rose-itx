@@ -1,6 +1,13 @@
 package org.example;
 
 class GildedRose {
+
+  public static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+
+  public static final String AGED_BRIE = "Aged Brie";
+
+  public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
   Item[] items;
 
   public GildedRose(Item[] items) {
@@ -13,12 +20,12 @@ class GildedRose {
   }
 
   private static void updateItemQuality(Item item) {
-    if(item.name.equals("Sulfuras, Hand of Ragnaros")) {
+    if(isSulfuras(item)) {
       return;
     }
 
-    if (!item.name.equals("Aged Brie")
-        && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+    if (!isAgedBrie(item)
+        && !isBackstage(item)) {
       if (item.quality > 0) {
         item.quality = item.quality - 1;
       }
@@ -26,7 +33,7 @@ class GildedRose {
       if (item.quality < 50) {
         item.quality = item.quality + 1;
 
-        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (isBackstage(item)) {
           if (item.sellIn < 11) {
             if (item.quality < 50) {
               item.quality = item.quality + 1;
@@ -45,8 +52,8 @@ class GildedRose {
     item.sellIn = item.sellIn - 1;
 
     if (item.sellIn < 0) {
-      if (!item.name.equals("Aged Brie")) {
-        if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+      if (!isAgedBrie(item)) {
+        if (!isBackstage(item)) {
           if (item.quality > 0) {
             item.quality = item.quality - 1;
           }
@@ -59,5 +66,17 @@ class GildedRose {
         }
       }
     }
+  }
+
+  private static boolean isBackstage(Item item) {
+    return item.name.equals(BACKSTAGE_PASS);
+  }
+
+  private static boolean isAgedBrie(Item item) {
+    return item.name.equals(AGED_BRIE);
+  }
+
+  private static boolean isSulfuras(Item item) {
+    return item.name.equals(SULFURAS);
   }
 }
