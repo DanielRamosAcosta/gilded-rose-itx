@@ -2,12 +2,15 @@ package org.example;
 
 public class AgedBrie extends Item {
 
-  public AgedBrie(String name, int sellIn, int quality) {
-    super(name, sellIn, quality);
+  public static final String AGED_BRIE = "Aged Brie";
+
+  public AgedBrie(int sellIn, int quality) {
+    super(AGED_BRIE, sellIn, quality);
   }
 
   @Override
   void update() {
+    decreaseSellIn();
     increaseQuality();
     if (hasExpired()) {
       increaseQuality();

@@ -2,12 +2,15 @@ package org.example;
 
 public class Backstage extends Item {
 
-  public Backstage(String name, int sellIn, int quality) {
-    super(name, sellIn, quality);
+  public static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+
+  public Backstage(int sellIn, int quality) {
+    super(BACKSTAGE_PASS, sellIn, quality);
   }
 
   @Override
   void update() {
+    decreaseSellIn();
     if (!hasMaxQuality()) {
       increaseQuality();
       if (this.sellIn < 10) {
@@ -24,15 +27,4 @@ public class Backstage extends Item {
     }
   }
 
-  @Override
-  void decreaseSellIn() {
-  }
-
-  @Override
-  void decreaseQuality() {
-  }
-
-  @Override
-  void increaseQuality() {
-  }
 }

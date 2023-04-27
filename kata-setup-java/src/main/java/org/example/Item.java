@@ -4,12 +4,6 @@ public class Item {
 
   public static final int MAX_QUALITY = 50;
 
-  public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-
-  public static final String AGED_BRIE = "Aged Brie";
-
-  public static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
-
   public String name;
 
   public int sellIn;
@@ -23,6 +17,7 @@ public class Item {
   }
 
   void update() {
+    decreaseSellIn();
     decreaseQuality();
     if (hasExpired()) {
       decreaseQuality();
@@ -34,14 +29,13 @@ public class Item {
   }
 
   void decreaseSellIn() {
-    if (!isSulfuras()) {
-      this.sellIn = this.sellIn - 1;
-    }
+    this.sellIn = this.sellIn - 1;
+
   }
 
   void decreaseQuality() {
     if (!hasMinimumQuality()) {
-        this.quality = this.quality - 1;
+      this.quality = this.quality - 1;
     }
   }
 
@@ -56,15 +50,15 @@ public class Item {
   }
 
   boolean isBackstage() {
-    return this.name.equals(BACKSTAGE_PASS);
+    return this.name.equals(Backstage.BACKSTAGE_PASS);
   }
 
   boolean isAgedBrie() {
-    return this.name.equals(AGED_BRIE);
+    return this.name.equals(AgedBrie.AGED_BRIE);
   }
 
   boolean isSulfuras() {
-    return this.name.equals(SULFURAS);
+    return this.name.equals(Sulfuras.SULFURAS);
   }
 
   boolean hasMaxQuality() {

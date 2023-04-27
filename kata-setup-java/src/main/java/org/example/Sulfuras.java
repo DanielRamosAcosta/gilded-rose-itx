@@ -2,8 +2,10 @@ package org.example;
 
 public class Sulfuras extends Item {
 
-  public Sulfuras(String name, int sellIn, int quality) {
-    super(name, sellIn, quality);
+  public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
+  public Sulfuras(int sellIn, int quality) {
+    super(SULFURAS, sellIn, quality);
   }
 
   @Override
