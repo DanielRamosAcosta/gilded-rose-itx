@@ -9,8 +9,12 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
+      if (this.isSulfuras(item)) return
+
+      item.decreaseSellIn()
+
       if (!this.isAgedBrie(item) && !this.isBackstage(item)) {
-        if (item.hasQuality() && !this.isSulfuras(item)) {
+        if (item.hasQuality()) {
           item.decreaseQuality()
         }
       } else {
@@ -28,12 +32,9 @@ export class GildedRose {
           }
         }
       }
-      if (!this.isSulfuras(item)) {
-        item.decreaseSellIn()
-      }
       if (item.isItemOverdated()) {
         if (!this.isAgedBrie(item)) {
-          if (!this.isBackstage(item) && item.hasQuality() && !this.isSulfuras(item)) {
+          if (!this.isBackstage(item) && item.hasQuality()) {
             item.decreaseQuality()
           } else {
             item.resetQualityToZero()
