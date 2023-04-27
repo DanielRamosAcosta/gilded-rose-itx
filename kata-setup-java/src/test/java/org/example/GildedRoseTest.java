@@ -87,4 +87,19 @@ class GildedRoseTest {
     assertEquals(expectedQuantity, app.items[0].quality);
     assertEquals(expectedSellIn, app.items[0].sellIn);
   }
+
+  @Test
+  void quantityTopsAt50() {
+    int quantity = 50;
+    int expectedQuantity = 50;
+    int sellIn = 10;
+    int expectedSellIn = sellIn - 1;
+    Item[] items = new Item[] { new Item("Aged Brie", sellIn, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expectedQuantity, app.items[0].quality);
+    assertEquals(expectedSellIn, app.items[0].sellIn);
+  }
 }
