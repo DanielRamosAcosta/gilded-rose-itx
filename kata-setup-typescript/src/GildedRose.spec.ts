@@ -70,3 +70,32 @@ describe("Aged Brie", () => {
     expect(updatedGildedRoseDay2[0].quality).toBe(DEFAULT_ITEM_QUALITY + 3)
   })
 })
+
+describe("Sulfuras", () => {
+  it("shouldn't change anything", () => {
+    const sulfuras = createGildedRoseBuilder({ name: "Sulfuras, Hand of Ragnaros" })
+    const gildedRose = new GildedRose([sulfuras])
+
+    gildedRose.updateQuality()
+    gildedRose.updateQuality()
+    gildedRose.updateQuality()
+    gildedRose.updateQuality()
+    const updatedGildedRose = gildedRose.updateQuality()
+
+    expect(updatedGildedRose[0].quality).toBe(DEFAULT_ITEM_QUALITY)
+    expect(updatedGildedRose[0].sellIn).toBe(DEFAULT_ITEM_SELLIN)
+  })
+})
+
+describe("Backstage", () => {
+  it("should decrease in 1 unit quality and sellIn", () => {
+    const gildedRose = new GildedRose([
+      createGildedRoseBuilder({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 20 }),
+    ])
+
+    const updatedGildedRose = gildedRose.updateQuality()
+
+    expect(updatedGildedRose[0].quality).toBe(DEFAULT_ITEM_QUALITY + 1)
+    expect(updatedGildedRose[0].sellIn).toBe(DEFAULT_ITEM_SELLIN - 1)
+  })
+})
