@@ -10,43 +10,30 @@ class GildedRose {
 
   public static void updateQuality(GildedRose gildedRose) {
     for (Item item : gildedRose.items) {
-      if (item.isAgedBrie()
-          || item.isBackstage()) {
-            if (item.hasLowerThanMaxQuality()) {
-              item.increaseQualityWithCheck();
+      if (item.isAgedBrie() || item.isBackstage()) {
+        item.increaseQualityWithCheck();
 
-              if (item.isBackstage()) {
-                if (item.sellInIsLowerThanTen()) {
-                  item.increaseQualityWithCheck();
-                }
+        if (item.isBackstage()) {
+          if (item.sellInIsLowerThanTen()) {
+            item.increaseQualityWithCheck();
+          }
 
-                if (item.sellInIsLowerThanFive()) {
-                  item.increaseQualityWithCheck();
-                }
-              }
-            }
-          } else {
-        if (item.theQualityIsAboveTheMinimum()) {
-          if (!item.isSulfuras()) {
-            item.quality = item.decrementQuality();
+          if (item.sellInIsLowerThanFive()) {
+            item.increaseQualityWithCheck();
           }
         }
+      } else {
+        item.decrementQualityWithCheck();
       }
 
-      if (!item.isSulfuras()) {
-        item.sellIn = item.sellInDecrease();
-      }
+      item.sellInDecrease();
 
-      if (item.sellIn < Item.MIN_QUALITY) {
+      if (item.sellIn < 0) {
         if (!item.isAgedBrie()) {
           if (!item.isBackstage()) {
-            if (item.theQualityIsAboveTheMinimum()) {
-              if (!item.isSulfuras()) {
-                item.quality = item.decrementQuality();
-              }
-            }
+            item.decrementQualityWithCheck();
           } else {
-            item.quality = item.resetQuality();
+            item.resetQuality();
           }
         } else {
           item.increaseQualityWithCheck();

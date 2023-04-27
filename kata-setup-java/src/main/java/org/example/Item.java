@@ -24,8 +24,14 @@ public abstract class Item {
     this.quality = quality;
   }
 
+  public void decrementQualityWithCheck() {
+    if (this.quality > MIN_QUALITY && !isSulfuras()) {
+      this.quality = decrementQuality();
+    }
+  }
+
   public void increaseQualityWithCheck() {
-    if (hasLowerThanMaxQuality()) {
+    if (hasLowerThanMaxQuality() && !isSulfuras()) {
       this.quality = increaseQuality();
     }
   }
@@ -38,19 +44,21 @@ public abstract class Item {
     return this.sellIn <= 5;
   }
 
-  public int sellInDecrease() {
-    return this.sellIn - 1;
+  public void sellInDecrease() {
+    if (!this.isSulfuras()) {
+      this.sellIn--;
+    }
   }
 
-  public int resetQuality() {
-    return this.quality - this.quality;
+  public void resetQuality() {
+    this.quality = 0;
   }
 
   boolean theQualityIsAboveTheMinimum() {
     return this.quality > MIN_QUALITY;
   }
 
-  public int decrementQuality() {
+  int decrementQuality() {
     return this.quality - 1;
   }
 
@@ -58,7 +66,7 @@ public abstract class Item {
     return this.quality < MAX_QUALITY;
   }
 
-  private int increaseQuality() {
+  int increaseQuality() {
     return this.quality + 1;
   }
 
