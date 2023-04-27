@@ -18,13 +18,11 @@ public abstract class Item {
     return sellIn < 0;
   }
 
-  public abstract void preDecreaseSellIn();
-
   public void decreaseSellIn() {
     sellIn -= 1;
   }
 
-  public abstract void postDecreaseSellIn();
+  public abstract void updateQuality();
 
   @Override
   public String toString() {

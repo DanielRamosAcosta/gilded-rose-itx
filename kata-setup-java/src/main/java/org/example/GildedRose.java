@@ -10,9 +10,8 @@ class GildedRose {
 
   public void updateQuality() {
     for (Item item : items) {
-      item.preDecreaseSellIn();
       item.decreaseSellIn();
-      item.postDecreaseSellIn();
+      item.updateQuality();
     }
   }
 }

@@ -7,17 +7,12 @@ public class ItemSulfuras extends Item {
   }
 
   @Override
-  public void preDecreaseSellIn() {
-    // Nothing
-  }
-
-  @Override
   public void decreaseSellIn() {
     // Nothing
   }
 
   @Override
-  public void postDecreaseSellIn() {
+  public void updateQuality() {
     // Nothing
   }
 }
