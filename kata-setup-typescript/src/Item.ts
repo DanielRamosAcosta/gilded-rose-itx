@@ -21,4 +21,20 @@ export class Item {
   isType(type: ItemType): boolean {
     return this.type === type
   }
+
+  isAged(): boolean {
+    return this.isType(ItemType.Aged)
+  }
+
+  isLegendary(): boolean {
+    return this.isType(ItemType.Legendary)
+  }
+
+  isBackstage(): boolean {
+    return this.isType(ItemType.Backstage)
+  }
+
+  isNormal(): boolean {
+    return this.isType(ItemType.Normal)
+  }
 }
