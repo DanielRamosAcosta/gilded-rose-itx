@@ -26,7 +26,9 @@ export class Item {
   }
 
   public decreaseQuality() {
-    this.quality--
+    if (this.hasQuality()) {
+      this.quality--
+    }
   }
 
   public resetQualityToZero() {
