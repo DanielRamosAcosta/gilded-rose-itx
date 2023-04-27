@@ -6,9 +6,10 @@ export class AgedBrie extends Item implements Itemer {
   }
 
   updateQuality(): void {
-    if (!this.isMaxQuality()) {
+    if (this.hasMaxQuality()) {
       return
     }
+
     if (this.sellIn < 0) {
       this.quality += 2
     } else {

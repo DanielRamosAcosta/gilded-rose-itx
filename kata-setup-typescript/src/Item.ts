@@ -1,5 +1,3 @@
-import { MAX_QUALITY } from "./constants/max-quality.js"
-
 export interface Itemer {
   updateQuality(newSellIn: number): void
   updateSellIn(): void
@@ -10,18 +8,20 @@ export class Item implements Itemer {
   sellIn: number
   quality: number
 
+  private MAX_QUALITY = 50
+
   constructor(name: string, sellIn: number, quality: number) {
     this.name = name
     this.sellIn = sellIn
     this.quality = quality
   }
 
-  isMaxQuality(): boolean {
-    return this.quality < MAX_QUALITY
+  hasMaxQuality(): boolean {
+    return this.quality >= this.MAX_QUALITY
   }
 
   updateQuality(): void {
-    if (!this.isMaxQuality()) {
+    if (this.hasMaxQuality()) {
       return
     }
     if (this.quality === 0) {

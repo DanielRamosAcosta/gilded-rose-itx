@@ -9,7 +9,7 @@ describe("Gilded Rose", () => {
   it("an unknown item must decrement sellIn and quality by one each day", () => {
     const gildedRose = new GildedRose([new Item("apple", 5, 5)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].sellIn).toBe(4)
     expect(items[0].quality).toBe(4)
@@ -18,7 +18,7 @@ describe("Gilded Rose", () => {
   it("an unknown item must decrement quality by two if sellIn is expired (0 or less)", () => {
     const gildedRose = new GildedRose([new Item("fresh apple", 0, 10)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(8)
   })
@@ -26,7 +26,7 @@ describe("Gilded Rose", () => {
   it("an unknown item must never has a quality less than zero", () => {
     const gildedRose = new GildedRose([new Item("rotten apple", 0, 0)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(0)
   })
@@ -34,7 +34,7 @@ describe("Gilded Rose", () => {
   it("aged items increase quality by one each day if they are on sellIn date", () => {
     const gildedRose = new GildedRose([new AgedBrie(5, 5)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(6)
   })
@@ -42,7 +42,7 @@ describe("Gilded Rose", () => {
   it("aged items increase quality by two each day if they are over sellIn date", () => {
     const gildedRose = new GildedRose([new AgedBrie(0, 5)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(7)
   })
@@ -50,7 +50,7 @@ describe("Gilded Rose", () => {
   it("an item quality should never be greater than 50", () => {
     const gildedRose = new GildedRose([new AgedBrie(0, 50)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(50)
   })
@@ -58,7 +58,7 @@ describe("Gilded Rose", () => {
   it("a legendary item should never loss sellIn and quality", () => {
     const gildedRose = new GildedRose([new Sulfuras(40, 40)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].sellIn).toBe(40)
     expect(items[0].quality).toBe(40)
@@ -67,7 +67,7 @@ describe("Gilded Rose", () => {
   it("a backstage pass should increase quality by one if concert date is more than 10 days away", () => {
     const gildedRose = new GildedRose([new BackstagePasses(15, 5)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(6)
   })
@@ -75,7 +75,7 @@ describe("Gilded Rose", () => {
   it("a backstage pass should increase quality by two if concert date is less than 10 days away, and more than 5", () => {
     const gildedRose = new GildedRose([new BackstagePasses(8, 5)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(7)
   })
@@ -83,18 +83,15 @@ describe("Gilded Rose", () => {
   it("a backstage pass should increase quality by three if concert date is less than 5 days away", () => {
     const gildedRose = new GildedRose([new BackstagePasses(3, 5)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].quality).toBe(8)
   })
 
   it("various items are proccesed successfully", () => {
-    const gildedRose = new GildedRose([
-      new Item("apple", 0, 5),
-      new Item("orange", 2, 5),
-    ])
+    const gildedRose = new GildedRose([new Item("apple", 0, 5), new Item("orange", 2, 5)])
 
-    const items = gildedRose.updateQuality()
+    const items = gildedRose.updateItems()
 
     expect(items[0].sellIn).toBeLessThan(0)
     expect(items[0].quality).toBeLessThan(5)

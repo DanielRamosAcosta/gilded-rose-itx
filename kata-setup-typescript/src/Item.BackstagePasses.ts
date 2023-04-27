@@ -6,7 +6,7 @@ export class BackstagePasses extends Item implements Itemer {
   }
 
   updateQuality(): void {
-    if (!this.isMaxQuality()) {
+    if (this.hasMaxQuality()) {
       return
     }
     if (this.sellIn > 10) {
