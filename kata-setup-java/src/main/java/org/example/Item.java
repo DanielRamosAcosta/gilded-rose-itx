@@ -22,6 +22,22 @@ public class Item {
     this.quality = quality;
   }
 
+  boolean isBackstage() {
+    return this.name.equals(BACKSTAGE_PASS);
+  }
+
+  boolean isAgedBrie() {
+    return this.name.equals(AGED_BRIE);
+  }
+
+  boolean isSulfuras() {
+    return this.name.equals(SULFURAS);
+  }
+
+  boolean hasMaxQuality() {
+    return this.quality < MAX_QUALITY;
+  }
+
   @Override
   public String toString() {
     return this.name + ", " + this.sellIn + ", " + this.quality;
