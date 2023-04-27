@@ -13,9 +13,7 @@ export class GildedRose {
 
       item.decreaseSellIn()
 
-      if (!this.isAgedBrie(item) && !this.isBackstage(item)) {
-        item.decreaseQuality()
-      } else {
+      if (this.isAgedBrie(item) || this.isBackstage(item)) {
         item.increaseQuality()
         if (this.isBackstage(item)) {
           if (this.isLessThanTenDaysToBackstage(item)) {
@@ -25,6 +23,8 @@ export class GildedRose {
             item.increaseQuality()
           }
         }
+      } else {
+        item.decreaseQuality()
       }
       if (item.isItemOverdated()) {
         if (this.isAgedBrie(item)) {
