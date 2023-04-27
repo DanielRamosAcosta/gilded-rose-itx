@@ -12,4 +12,17 @@ class GildedRoseTest {
     app.updateQuality();
     assertEquals("fixme", app.items[0].name);
   }
+
+  @Test
+  void decrementQualityWhenTimePassed() {
+    int quantity = 5;
+    int expectedQuantityDecrement = 1;
+    int expected = quantity - expectedQuantityDecrement;
+    Item[] items = new Item[] { new Item("Apple", 10, quantity) };
+    GildedRose app = new GildedRose(items);
+
+    app.updateQuality();
+
+    assertEquals(expected, app.items[0].quality);
+  }
 }
