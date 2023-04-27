@@ -37,12 +37,8 @@ export class GildedRose {
       }
       if (item.isItemOverdated()) {
         if (!this.isAgedBrie(item)) {
-          if (!this.isBackstage(item)) {
-            if (item.hasQuality()) {
-              if (!this.isSulfuras(item)) {
-                item.decreaseQuality()
-              }
-            }
+          if (!this.isBackstage(item) && item.hasQuality() && !this.isSulfuras(item)) {
+            item.decreaseQuality()
           } else {
             item.resetQualityToZero()
           }
