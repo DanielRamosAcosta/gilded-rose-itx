@@ -20,7 +20,6 @@ describe("Gilded Rose", () => {
         it("then quality is decreased in 1", () => {
           const gildedRose = new GildedRose([aNormal(5, 5)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(4)
         })
       })
@@ -28,7 +27,6 @@ describe("Gilded Rose", () => {
         it("then quality is decreased in 2", () => {
           const gildedRose = new GildedRose([aNormal(0, 5)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(3)
         })
       })
@@ -38,14 +36,12 @@ describe("Gilded Rose", () => {
         it("then quality is increased in 2", () => {
           const gildedRose = new GildedRose([anAged(0, 5)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(7)
         })
         describe("and the sell in date future", () => {
           it("then quality is increased in 1", () => {
             const gildedRose = new GildedRose([anAged(10, 5)])
             const items = gildedRose.updateQuality()
-            console.log("items", items[0].quality)
             expect(items[0].quality).toBe(6)
           })
         })
@@ -56,7 +52,6 @@ describe("Gilded Rose", () => {
           it("then quality is 50", () => {
             const gildedRose = new GildedRose([anAged(10, 50)])
             const items = gildedRose.updateQuality()
-            console.log("items", items[0].quality)
             expect(items[0].quality).toBe(50)
           })
         })
@@ -66,14 +61,12 @@ describe("Gilded Rose", () => {
       it("then quality is not increased", () => {
         const gildedRose = new GildedRose([aLegendary(10, 5)])
         const items = gildedRose.updateQuality()
-        console.log("items", items[0].quality)
         expect(items[0].quality).toBe(5)
       })
       describe("and the quality is more than 50", () => {
         it("then quality is 50", () => {
           const gildedRose = new GildedRose([anAged(10, 50)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(50)
         })
       })
@@ -83,7 +76,6 @@ describe("Gilded Rose", () => {
         it("then quality is increased in 2", () => {
           const gildedRose = new GildedRose([aBackstage(10, 6)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(8)
         })
       })
@@ -91,7 +83,6 @@ describe("Gilded Rose", () => {
         it("then quality is increased in 2", () => {
           const gildedRose = new GildedRose([aBackstage(9, 6)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(8)
         })
       })
@@ -99,7 +90,6 @@ describe("Gilded Rose", () => {
         it("then quality is increased in 3", () => {
           const gildedRose = new GildedRose([aBackstage(5, 6)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(9)
         })
       })
@@ -107,7 +97,6 @@ describe("Gilded Rose", () => {
         it("then quality is increased in 3", () => {
           const gildedRose = new GildedRose([aBackstage(0, 6)])
           const items = gildedRose.updateQuality()
-          console.log("items", items[0].quality)
           expect(items[0].quality).toBe(0)
         })
       })
