@@ -88,7 +88,7 @@ describe("Sulfuras", () => {
 })
 
 describe("Backstage", () => {
-  it("should decrease in 1 unit quality and sellIn", () => {
+  it("should increase in 1 unit quality and decrease 1 unit sellIn", () => {
     const gildedRose = new GildedRose([
       createGildedRoseBuilder({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 20 }),
     ])
@@ -96,6 +96,39 @@ describe("Backstage", () => {
     const updatedGildedRose = gildedRose.updateQuality()
 
     expect(updatedGildedRose[0].quality).toBe(DEFAULT_ITEM_QUALITY + 1)
-    expect(updatedGildedRose[0].sellIn).toBe(DEFAULT_ITEM_SELLIN - 1)
+    expect(updatedGildedRose[0].sellIn).toBe(19)
+  })
+
+  it("should increase in 2 unit quality and decrease 1 unit sellIn when 10 days or less are missing", () => {
+    const gildedRose = new GildedRose([
+      createGildedRoseBuilder({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10 }),
+    ])
+
+    const updatedGildedRose = gildedRose.updateQuality()
+
+    expect(updatedGildedRose[0].quality).toBe(DEFAULT_ITEM_QUALITY + 2)
+    expect(updatedGildedRose[0].sellIn).toBe(9)
+  })
+
+  it("should increase in 3 unit quality and decrease 1 unit sellIn when 5 days or less are missing", () => {
+    const gildedRose = new GildedRose([
+      createGildedRoseBuilder({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5 }),
+    ])
+
+    const updatedGildedRose = gildedRose.updateQuality()
+
+    expect(updatedGildedRose[0].quality).toBe(DEFAULT_ITEM_QUALITY + 3)
+    expect(updatedGildedRose[0].sellIn).toBe(4)
+  })
+
+  it("should have 0 quality when sellIn is 0", () => {
+    const gildedRose = new GildedRose([
+      createGildedRoseBuilder({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0 }),
+    ])
+
+    const updatedGildedRose = gildedRose.updateQuality()
+
+    expect(updatedGildedRose[0].quality).toBe(0)
+    expect(updatedGildedRose[0].sellIn).toBe(-1)
   })
 })
