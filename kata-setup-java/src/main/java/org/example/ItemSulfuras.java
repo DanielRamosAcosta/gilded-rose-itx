@@ -15,4 +15,9 @@ public class ItemSulfuras extends Item {
   public void decreaseSellIn() {
     // Nothing
   }
+
+  @Override
+  public void postDecreaseSellIn() {
+    // Nothing
+  }
 }

@@ -12,4 +12,13 @@ public class ItemAgedBrie extends Item {
       quality = quality + 1;
     }
   }
+
+  @Override
+  public void postDecreaseSellIn() {
+    if (sellIn < 0) {
+      if (quality < 50) {
+        quality = quality + 1;
+      }
+    }
+  }
 }

@@ -18,4 +18,11 @@ public class ItemBackstagePasses extends Item {
       quality = quality + 1;
     }
   }
+
+  @Override
+  public void postDecreaseSellIn() {
+    if (sellIn < 0) {
+      quality = 0;
+    }
+  }
 }

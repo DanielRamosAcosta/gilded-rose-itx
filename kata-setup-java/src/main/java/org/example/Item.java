@@ -20,6 +20,8 @@ public abstract class Item {
     sellIn -= 1;
   }
 
+  public abstract void postDecreaseSellIn();
+
   @Override
   public String toString() {
     return this.name + ", " + this.sellIn + ", " + this.quality;
