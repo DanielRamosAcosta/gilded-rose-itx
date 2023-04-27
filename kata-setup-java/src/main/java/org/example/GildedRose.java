@@ -2,16 +2,6 @@ package org.example;
 
 class GildedRose {
 
-  public static final String AGED_BRIE = "Aged Brie";
-
-  public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-
-  public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-
-  public static final int MAX_QUALITY = 50;
-
-  public static final int MIN_QUALITY = 0;
-
   Item[] items;
 
   public GildedRose(Item[] items) {
@@ -28,18 +18,18 @@ class GildedRose {
           }
         }
       } else {
-        if (item.hasMaxQuality()) {
+        if (item.hasLowerThanMaxQuality()) {
           item.quality = item.increaseQuality();
 
           if (item.isBackstage()) {
             if (sellInIsLowerThanTen(item)) {
-              if (item.hasMaxQuality()) {
+              if (item.hasLowerThanMaxQuality()) {
                 item.quality = item.increaseQuality();
               }
             }
 
             if (sellInIsLowerThanFive(item)) {
-              if (item.hasMaxQuality()) {
+              if (item.hasLowerThanMaxQuality()) {
                 item.quality = item.increaseQuality();
               }
             }
@@ -51,7 +41,7 @@ class GildedRose {
         item.sellIn = sellInDecrease(item);
       }
 
-      if (item.sellIn < MIN_QUALITY) {
+      if (item.sellIn < Item.MIN_QUALITY) {
         if (!item.isAgedBrie()) {
           if (!item.isBackstage()) {
             if (item.theQualityIsAboveTheMinimum()) {
@@ -63,7 +53,7 @@ class GildedRose {
             item.quality = resetQuality(item);
           }
         } else {
-          if (item.hasMaxQuality()) {
+          if (item.hasLowerThanMaxQuality()) {
             item.quality = item.increaseQuality();
           }
         }

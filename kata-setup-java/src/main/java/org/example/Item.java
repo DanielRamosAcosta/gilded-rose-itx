@@ -1,6 +1,17 @@
 package org.example;
 
 public class Item {
+
+  public static final String AGED_BRIE = "Aged Brie";
+
+  public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+
+  public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
+  public static final int MAX_QUALITY = 50;
+
+  public static final int MIN_QUALITY = 0;
+
   public String name;
 
   public int sellIn;
@@ -14,15 +25,15 @@ public class Item {
   }
 
   boolean theQualityIsAboveTheMinimum() {
-    return this.quality > GildedRose.MIN_QUALITY;
+    return this.quality > MIN_QUALITY;
   }
 
   public int decrementQuality() {
     return this.quality - 1;
   }
 
-  public boolean hasMaxQuality() {
-    return this.quality < GildedRose.MAX_QUALITY;
+  public boolean hasLowerThanMaxQuality() {
+    return this.quality < MAX_QUALITY;
   }
 
   public int increaseQuality() {
@@ -30,15 +41,15 @@ public class Item {
   }
 
   public boolean isAgedBrie() {
-    return this.name.equals(GildedRose.AGED_BRIE);
+    return this.name.equals(AGED_BRIE);
   }
 
   public boolean isBackstage() {
-    return this.name.equals(GildedRose.BACKSTAGE_PASSES);
+    return this.name.equals(BACKSTAGE_PASSES);
   }
 
   public boolean isSulfuras() {
-    return this.name.equals(GildedRose.SULFURAS);
+    return this.name.equals(SULFURAS);
   }
 
   @Override
