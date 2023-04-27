@@ -2,6 +2,7 @@ export enum ItemType {
   Aged,
   Legendary,
   Backstage,
+  Normal,
 }
 
 export class Item {
