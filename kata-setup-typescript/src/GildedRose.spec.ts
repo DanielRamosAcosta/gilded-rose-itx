@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
-import { AGED_BRIE_NAME } from "./constants/items-names.js"
 import { GildedRose } from "./GildedRose.js"
 import { Item } from "./Item.js"
+import { AGED_BRIE_NAME } from "./constants/items-names.js"
 
 describe("Gilded Rose", () => {
   it("an unknown item must decrement sellIn and quality by one each day", () => {
@@ -43,5 +43,13 @@ describe("Gilded Rose", () => {
     const items = gildedRose.updateQuality()
 
     expect(items[0].quality).toBe(7)
+  })
+
+  it("an item quality should never be greater than 50", () => {
+    const gildedRose = new GildedRose([new Item(AGED_BRIE_NAME, 0, 50)])
+
+    const items = gildedRose.updateQuality()
+
+    expect(items[0].quality).toBe(50)
   })
 })
