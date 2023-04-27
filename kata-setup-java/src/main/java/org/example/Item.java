@@ -22,6 +22,16 @@ public class Item {
     this.quality = quality;
   }
 
+  void increaseQuality() {
+    if (hasMaxQuality()) {
+      this.quality = this.quality + 1;
+    }
+  }
+
+  boolean hasMinimumQuality() {
+    return this.quality <= 0;
+  }
+
   boolean isBackstage() {
     return this.name.equals(BACKSTAGE_PASS);
   }
