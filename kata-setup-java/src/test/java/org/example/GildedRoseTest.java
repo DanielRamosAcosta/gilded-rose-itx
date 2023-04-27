@@ -2,6 +2,7 @@ package org.example;
 
 import static org.example.GlidedRoseMother.AGED_BRIE;
 import static org.example.GlidedRoseMother.AGED_BRIE_EXCEDED;
+import static org.example.GlidedRoseMother.AGED_BRIE_MAX_QA;
 import static org.example.GlidedRoseMother.AGED_BRIE_MAX_QUALITY;
 import static org.example.GlidedRoseMother.BACKSTAGE_SELL_IN_0;
 import static org.example.GlidedRoseMother.BACKSTAGE_SELL_IN_10;
@@ -55,6 +56,17 @@ class GildedRoseTest {
     app.updateQuality();
 
     assertEquals(expectedQuality + 1, app.items[0].quality);
+  }
+
+  @Test
+  void apegBrieNotIncreaseMaxQAWithPositiveSellingDate() {
+    Item[] items = new Item[] { AGED_BRIE_MAX_QA };
+    GildedRose app = new GildedRose(items);
+    int expectedQuality = AGED_BRIE_MAX_QA.quality;
+
+    app.updateQuality();
+
+    assertEquals(expectedQuality, app.items[0].quality);
   }
 
   @Test

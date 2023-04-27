@@ -2,11 +2,10 @@ package org.example;
 
 public class SulfurasItem extends Item {
 
-  public SulfurasItem(int sellIn, int quality) {
-    super("Sulfuras, Hand of Ragnaros", sellIn, quality);
+  public SulfurasItem(int sellIn) {
+    super("Sulfuras, Hand of Ragnaros", sellIn, 80);
   }
 
   public void updateQuality() {
-    return;
   }
 }
