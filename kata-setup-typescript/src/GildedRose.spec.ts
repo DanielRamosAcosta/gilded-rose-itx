@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { GildedRose } from "./GildedRose.js"
 import { Item } from "./Item.js"
-import { log } from "util"
 
 const DEFAULT_ITEM_NAME = "item-name"
 const DEFAULT_ITEM_QUALITY = 5
@@ -11,13 +10,6 @@ const createGildedRoseBuilder = ({ name, quality, sellIn }: { name?: string; qua
   return new Item(name ?? DEFAULT_ITEM_NAME, sellIn ?? DEFAULT_ITEM_SELLIN, quality ?? DEFAULT_ITEM_QUALITY)
 }
 
-describe("Gilded Rose", () => {
-  it("should foo", () => {
-    const gildedRose = new GildedRose([new Item("fixme", 0, 0)])
-    const items = gildedRose.updateQuality()
-    expect(items[0].name).toBe("fixme")
-  })
-})
 describe("Basic items", () => {
   it("should decrease in 1 unit quality and sellIn", () => {
     const gildedRose = new GildedRose([createGildedRoseBuilder({})])
@@ -43,5 +35,38 @@ describe("Basic items", () => {
     const updatedGildedRose = gildedRose.updateQuality()
 
     expect(updatedGildedRose[0].quality).not.toBeLessThan(0)
+  })
+
+  it("quality shouldn't be more than 50", () => {
+    const gildedRose = new GildedRose([createGildedRoseBuilder({ quality: 49 })])
+
+    gildedRose.updateQuality()
+    gildedRose.updateQuality()
+    gildedRose.updateQuality()
+    gildedRose.updateQuality()
+    const updatedGildedRose = gildedRose.updateQuality()
+
+    expect(updatedGildedRose[0].quality).not.toBeGreaterThan(50)
+  })
+})
+
+describe("Aged Brie", () => {
+  it("should increase in 1 unit quality", () => {
+    const agedBrie = createGildedRoseBuilder({ name: "Aged Brie", sellIn: 1 })
+    const gildedRose = new GildedRose([agedBrie])
+
+    const updatedGildedRose = gildedRose.updateQuality()
+
+    expect(updatedGildedRose[0].quality).toBe(DEFAULT_ITEM_QUALITY + 1)
+  })
+
+  it("should increase double quality when sellIn is 0", () => {
+    const agedBrie = createGildedRoseBuilder({ name: "Aged Brie", sellIn: 1 })
+    const gildedRose = new GildedRose([agedBrie])
+
+    gildedRose.updateQuality()
+    const updatedGildedRoseDay2 = gildedRose.updateQuality()
+
+    expect(updatedGildedRoseDay2[0].quality).toBe(DEFAULT_ITEM_QUALITY + 3)
   })
 })
