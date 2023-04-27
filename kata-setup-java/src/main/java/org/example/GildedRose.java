@@ -32,7 +32,7 @@ class GildedRose {
         item.quality = item.quality - 1;
       }
 
-      item.sellIn = item.sellIn - 1;
+      item.updateQuality();
 
       if (item.sellIn < 0) {
         if (isAgedBrie(item)) {
