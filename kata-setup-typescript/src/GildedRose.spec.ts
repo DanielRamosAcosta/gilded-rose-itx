@@ -18,4 +18,11 @@ describe("Gilded Rose", () => {
     expect(items[0].sellIn).toBe(-1)
     expect(items[0].quality).toBe(8)
   })
+
+  it("an unknown item must never has a quality less than zero", () => {
+    const gildedRose = new GildedRose([new Item("rotten apple", 0, 0)])
+    const items = gildedRose.updateQuality()
+    expect(items[0].sellIn).toBe(-1)
+    expect(items[0].quality).toBe(0)
+  })
 })
