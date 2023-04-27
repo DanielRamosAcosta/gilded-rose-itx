@@ -19,12 +19,12 @@ export class GildedRose {
         if (item.hasLessThanMaxQuality()) {
           item.increaseQuality()
           if (this.isBackstage(item)) {
-            if (item.sellIn < 11) {
+            if (this.isLessThanTenDaysToBackstage(item)) {
               if (item.hasLessThanMaxQuality()) {
                 item.increaseQuality()
               }
             }
-            if (item.sellIn < 6) {
+            if (this.isLessThanFiveDaysToBackstage(item)) {
               if (item.hasLessThanMaxQuality()) {
                 item.increaseQuality()
               }
@@ -35,7 +35,7 @@ export class GildedRose {
       if (!this.isSulfuras(item)) {
         item.decreaseSellIn()
       }
-      if (item.sellIn < 0) {
+      if (item.isItemOverdated()) {
         if (!this.isAgedBrie(item)) {
           if (!this.isBackstage(item)) {
             if (item.hasQuality()) {
@@ -44,7 +44,7 @@ export class GildedRose {
               }
             }
           } else {
-            item.quality = item.quality - item.quality
+            item.resetQualityToZero()
           }
         } else {
           if (item.hasLessThanMaxQuality()) {
@@ -55,6 +55,14 @@ export class GildedRose {
     })
 
     return this.items
+  }
+
+  private isLessThanFiveDaysToBackstage(item: Item) {
+    return item.sellIn < 6
+  }
+
+  private isLessThanTenDaysToBackstage(item: Item) {
+    return item.sellIn < 11
   }
 
   private isSulfuras(item: Item) {

@@ -27,7 +27,15 @@ export class Item {
     this.quality--
   }
 
+  public resetQualityToZero() {
+    this.quality = 0
+  }
+
   public decreaseSellIn() {
     this.sellIn--
+  }
+
+  public isItemOverdated() {
+    return this.sellIn < 0
   }
 }
